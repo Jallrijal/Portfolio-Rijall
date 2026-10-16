@@ -1,0 +1,6 @@
+PRD.md
+assets/
+.agents/
+.claude/
+agent/
+skills-lock.json
