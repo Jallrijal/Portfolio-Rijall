@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Base Styles & Design Tokens
+   ========================================================================== */
+:root {
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Color Palette (Refer to Design.md) */
+  --bg-dark: #0a0a0a;
+  --bg-surface: rgba(255, 255, 255, 0.08);
+  --border-surface: rgba(255, 255, 255, 0.18);
+  --text-main: #ffffff;
+  --text-muted: #cccccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-primary);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
