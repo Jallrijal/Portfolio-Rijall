@@ -1,36 +1,770 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Personal - Web Developer & UI/UX Designer">
-  <title>Portfolio</title>
+  <meta name="description" content="Portfolio Personal Rijal Imamul Haq - Web Developer & Frontend Specialist. Membangun antarmuka web modern, responsif, dan interaktif.">
+  <title>Rijal Imamul Haq - Web Developer Portfolio</title>
+
+  <!-- Skrip inline zero-flash untuk tema (mencegah kedipan FOUC saat halaman dimuat) -->
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('portfolio_theme');
+        const theme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 6 (Vektor Icons) -->
+  <!-- Font Awesome 6 (Vector Icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  <!-- Devicon (Tech Stack & Tool Icons, termasuk GSAP & GreenSock) -->
+  <!-- Devicon (Technology & Tool Icons) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <div id="app">
-    <!-- Konten Portfolio akan ditempatkan di sini -->
-  </div>
+  <!-- Header & Floating Pill Navbar -->
+  <header class="site-header" id="site-header">
+    <div class="nav-container">
+      <nav class="navbar" aria-label="Navigasi Utama">
+        <!-- Brand Logo Monogram -->
+        <a href="#home" class="brand-logo" aria-label="Beranda Rijal Imamul Haq">
+          <span class="brand-badge">R</span>
+          <span class="brand-text">Rijall<span class="brand-dot">.</span></span>
+        </a>
 
-  <!-- GSAP (GreenSock Animation Platform) & Plugins -->
+        <!-- Navigation Links List (Reflowable on mobile) -->
+        <div class="nav-menu-wrapper" id="nav-menu-wrapper">
+          <ul class="nav-list" role="list">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active" data-section="home">
+                <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link" data-section="about">
+                <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                <span>About</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#tools" class="nav-link" data-section="tools">
+                <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                <span>Tools</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link" data-section="projects">
+                <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#experience" class="nav-link" data-section="experience">
+                <i class="fa-solid fa-timeline nav-icon" aria-hidden="true"></i>
+                <span>Experience</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link" data-section="contact">
+                <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Action Controls: Theme Switcher, CMS Button, Mobile Toggle -->
+        <div class="nav-actions">
+          <!-- Dark Mode Toggle Button -->
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Ubah tema gelap atau terang" aria-pressed="true" title="Ganti Mode Tema">
+            <i class="fa-solid fa-moon icon-theme-moon" aria-hidden="true"></i>
+            <i class="fa-solid fa-sun icon-theme-sun" aria-hidden="true"></i>
+          </button>
+
+          <!-- Quick CMS Link (Sesuai PRD & Design Reference) -->
+          <a href="./login.html" class="cms-nav-btn" aria-label="Akses CMS Pengelolaan Portofolio">
+            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+            <span class="cms-nav-text">CMS</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle Button -->
+          <button type="button" class="mobile-toggle" id="mobile-toggle" aria-expanded="false" aria-controls="nav-menu-wrapper" aria-label="Buka menu navigasi">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <!-- =====================================================================
+         1. Section: Home (Hero)
+         ===================================================================== -->
+    <section id="home" class="section hero-section" aria-labelledby="hero-name">
+      <div class="section-container hero-container">
+        <!-- Hero Text & Overview -->
+        <div class="hero-content">
+          <!-- Availability Badge -->
+          <div class="badge-status">
+            <span class="badge-status-dot" aria-hidden="true"></span>
+            <span>Terbuka untuk Peluang Kerja & Freelance</span>
+          </div>
+
+          <h1 class="hero-heading" id="hero-name">
+            <span class="hero-greeting">Halo, saya</span>
+            <span class="hero-title-name">Rijal Imamul Haq</span>
+          </h1>
+
+          <!-- Animated Subtitle / Roles -->
+          <div class="hero-roles-box">
+            <span class="hero-roles-prefix">Fokus:</span>
+            <span class="hero-role-text" id="typewriter-text">Web Developer</span>
+          </div>
+
+          <p class="hero-bio">
+            Membangun antarmuka web modern, responsif, dan interaktif dengan perhatian tinggi pada performa dan kenyamanan pengalaman pengguna.
+          </p>
+
+          <!-- Call To Action Buttons -->
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+              <span>Lihat Proyek</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
+              <span>Hubungi Saya</span>
+            </a>
+          </div>
+
+          <!-- Real Metrics / Stats Counters -->
+          <div class="hero-stats-grid">
+            <article class="stat-card">
+              <div class="stat-icon-wrapper" aria-hidden="true">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Proyek Selesai</span>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon-wrapper" aria-hidden="true">
+                <i class="fa-solid fa-code-commit"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-number">2+ Tahun</span>
+                <span class="stat-label">Pengalaman Coding</span>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon-wrapper" aria-hidden="true">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Komitmen Kualitas</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Hero Visual Profile Card -->
+        <div class="hero-visual">
+          <div class="profile-card">
+            <div class="profile-avatar-frame">
+              <img src="./assets/Profil/Img-Profil.jpeg" alt="Foto Profil Rijal Imamul Haq" class="profile-avatar-img" width="360" height="360" loading="eager">
+            </div>
+            <div class="profile-card-footer">
+              <div class="profile-status-badge">
+                <i class="fa-solid fa-code" aria-hidden="true"></i>
+                <span>Frontend & Web Specialist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         2. Section: About Me
+         ===================================================================== -->
+    <section id="about" class="section about-section" aria-labelledby="about-heading">
+      <div class="section-container">
+        <!-- Section Header (English title, Indonesian subtitle) -->
+        <header class="section-header">
+          <p class="section-subtitle">Mengenal Lebih Dekat</p>
+          <h2 class="section-title" id="about-heading">About Me</h2>
+        </header>
+
+        <div class="about-grid">
+          <!-- Column 1: Profile Highlight & Details -->
+          <div class="about-card-left">
+            <div class="about-avatar-wrapper">
+              <img src="./assets/Profil/Img-Profil.jpeg" alt="Potret Rijal Imamul Haq" class="about-avatar-img" loading="lazy">
+            </div>
+
+            <ul class="personal-info-list" role="list">
+              <li class="personal-info-item">
+                <div class="info-icon" aria-hidden="true">
+                  <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Peran</span>
+                  <span class="info-value">Frontend / Web Developer</span>
+                </div>
+              </li>
+              <li class="personal-info-item">
+                <div class="info-icon" aria-hidden="true">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Lokasi</span>
+                  <span class="info-value">Indonesia</span>
+                </div>
+              </li>
+              <li class="personal-info-item">
+                <div class="info-icon" aria-hidden="true">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Status</span>
+                  <span class="info-value">Tersedia untuk Proyek</span>
+                </div>
+              </li>
+              <li class="personal-info-item">
+                <div class="info-icon" aria-hidden="true">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Bahasa</span>
+                  <span class="info-value">Bahasa Indonesia & English</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Personal Narrative Bio -->
+          <div class="about-card-right">
+            <h3 class="about-story-title">Menghadirkan Solusi Digital Melalui Kode yang Terstruktur</h3>
+
+            <div class="about-text-content">
+              <p>
+                Halo! Saya Rijal Imamul Haq Syamsu Alam, seorang Web Developer yang berfokus pada pengembangan antarmuka web modern yang bersih, interaktif, dan mudah digunakan.
+              </p>
+              <p>
+                Saya memiliki ketertarikan mendalam pada interaksi visual menggunakan GSAP, arsitektur CSS modern, serta penyusunan kode JavaScript vanilla yang rapi, cepat, dan terstruktur tanpa ketergantungan berlebih.
+              </p>
+              <p>
+                Bagi saya, web development bukan hanya sekadar membuat aplikasi berfungsi, melainkan menghadirkan pengalaman visual yang nyaman, inklusif, dan responsif bagi setiap pengunjung.
+              </p>
+            </div>
+
+            <div class="about-actions">
+              <a href="#contact" class="btn btn-secondary">
+                <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                <span>Download CV</span>
+              </a>
+              <a href="#experience" class="btn btn-ghost">
+                <span>Lihat Pengalaman</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. Section: Tools & Technologies
+         ===================================================================== -->
+    <section id="tools" class="section tools-section" aria-labelledby="tools-heading">
+      <div class="section-container">
+        <!-- Section Header -->
+        <header class="section-header">
+          <p class="section-subtitle">Keahlian & Perangkat yang Sering Digunakan</p>
+          <h2 class="section-title" id="tools-heading">Tools & Technologies</h2>
+        </header>
+
+        <!-- Category Filters -->
+        <div class="tools-filter-bar" role="tablist" aria-label="Filter kategori tools">
+          <button type="button" class="filter-chip active" data-filter="all" role="tab" aria-selected="true">Semua</button>
+          <button type="button" class="filter-chip" data-filter="Frontend" role="tab" aria-selected="false">Frontend</button>
+          <button type="button" class="filter-chip" data-filter="Styling & Design" role="tab" aria-selected="false">Styling & Design</button>
+          <button type="button" class="filter-chip" data-filter="Tools & Versioning" role="tab" aria-selected="false">Tools & Versioning</button>
+        </div>
+
+        <!-- Tools Cards Grid -->
+        <div class="tools-grid" id="tools-grid">
+          <!-- 1. HTML5 -->
+          <article class="tool-card" data-category="Frontend">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-html5-plain colored"></i>
+              </div>
+              <span class="tool-badge">Advanced</span>
+            </div>
+            <h3 class="tool-name">HTML5</h3>
+            <span class="tool-category">Frontend</span>
+            <p class="tool-desc">Penyusunan struktur dokumen web yang semantik dan ramah aksesibilitas.</p>
+          </article>
+
+          <!-- 2. CSS3 -->
+          <article class="tool-card" data-category="Styling & Design">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-css3-plain colored"></i>
+              </div>
+              <span class="tool-badge">Advanced</span>
+            </div>
+            <h3 class="tool-name">CSS3</h3>
+            <span class="tool-category">Styling & Design</span>
+            <p class="tool-desc">Tata letak modern dengan Flexbox, Grid, CSS Variables, dan animasi transisi.</p>
+          </article>
+
+          <!-- 3. JavaScript -->
+          <article class="tool-card" data-category="Frontend">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-javascript-plain colored"></i>
+              </div>
+              <span class="tool-badge">Advanced</span>
+            </div>
+            <h3 class="tool-name">JavaScript (ES6+)</h3>
+            <span class="tool-category">Frontend</span>
+            <p class="tool-desc">Logika interaktif, manipulasi DOM dinamis, asynchronous fetch, dan modularitas kode.</p>
+          </article>
+
+          <!-- 4. GSAP -->
+          <article class="tool-card" data-category="Styling & Design">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-greensock-plain colored"></i>
+              </div>
+              <span class="tool-badge">Intermediate</span>
+            </div>
+            <h3 class="tool-name">GSAP</h3>
+            <span class="tool-category">Styling & Design</span>
+            <p class="tool-desc">Animasi timeline performa tinggi dan efek transisi interaktif dengan ScrollTrigger.</p>
+          </article>
+
+          <!-- 5. Git -->
+          <article class="tool-card" data-category="Tools & Versioning">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-git-plain colored"></i>
+              </div>
+              <span class="tool-badge">Intermediate</span>
+            </div>
+            <h3 class="tool-name">Git</h3>
+            <span class="tool-category">Tools & Versioning</span>
+            <p class="tool-desc">Pelacakan riwayat versi kode dan pengelolaan branch pengembangan proyek.</p>
+          </article>
+
+          <!-- 6. GitHub -->
+          <article class="tool-card" data-category="Tools & Versioning">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-github-original tool-icon-github"></i>
+              </div>
+              <span class="tool-badge">Intermediate</span>
+            </div>
+            <h3 class="tool-name">GitHub</h3>
+            <span class="tool-category">Tools & Versioning</span>
+            <p class="tool-desc">Penyimpanan repositori daring, kolaborasi kode, dan deployment ke GitHub Pages.</p>
+          </article>
+
+          <!-- 7. VS Code -->
+          <article class="tool-card" data-category="Tools & Versioning">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-vscode-plain colored"></i>
+              </div>
+              <span class="tool-badge">Advanced</span>
+            </div>
+            <h3 class="tool-name">VS Code</h3>
+            <span class="tool-category">Tools & Versioning</span>
+            <p class="tool-desc">Pusat lingkungan kerja penulisan kode dengan konfigurasi ekstensi produktivitas.</p>
+          </article>
+
+          <!-- 8. Figma -->
+          <article class="tool-card" data-category="Styling & Design">
+            <div class="tool-header">
+              <div class="tool-icon-box" aria-hidden="true">
+                <i class="devicon-figma-plain colored"></i>
+              </div>
+              <span class="tool-badge">Intermediate</span>
+            </div>
+            <h3 class="tool-name">Figma</h3>
+            <span class="tool-category">Styling & Design</span>
+            <p class="tool-desc">Perancangan wireframe, eksplorasi mockup UI, dan acuan slicing desain ke kode.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. Section: Featured Projects
+         ===================================================================== -->
+    <section id="projects" class="section projects-section" aria-labelledby="projects-heading">
+      <div class="section-container">
+        <!-- Section Header -->
+        <header class="section-header">
+          <p class="section-subtitle">Karya Pilihan yang Pernah Saya Kembangkan</p>
+          <h2 class="section-title" id="projects-heading">Featured Projects</h2>
+        </header>
+
+        <!-- Projects Cards Grid -->
+        <div class="projects-grid">
+          <!-- Project 1: K-Link -->
+          <article class="project-card">
+            <div class="project-thumbnail-wrapper">
+              <img src="./assets/Project/Project K-link.png" alt="Tangkapan layar proyek K-Link Web Application" class="project-thumbnail" loading="lazy">
+              <span class="project-category-tag">Web Application</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">K-Link Web Application</h3>
+              <p class="project-summary">
+                Platform web untuk menghubungkan layanan komunitas dan komunikasi terintegrasi dengan antarmuka yang bersih dan intuitif.
+              </p>
+              <div class="project-tags-list">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/Jallrijal/k-link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  <span>Source Code</span>
+                </a>
+                <a href="#contact" class="btn btn-sm btn-ghost">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Detail</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Burgold -->
+          <article class="project-card">
+            <div class="project-thumbnail-wrapper">
+              <img src="./assets/Project/Project-Burgold.png" alt="Tangkapan layar proyek Burgold Food & Beverage" class="project-thumbnail" loading="lazy">
+              <span class="project-category-tag">Landing Page</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Burgold Food & Beverage</h3>
+              <p class="project-summary">
+                Landing page interaktif untuk brand makanan cepat saji dengan katalog burger premium dan animasi interaktif GSAP.
+              </p>
+              <div class="project-tags-list">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">GSAP</span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/Jallrijal/burgold" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  <span>Source Code</span>
+                </a>
+                <a href="#contact" class="btn btn-sm btn-ghost">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Detail</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Jersell -->
+          <article class="project-card">
+            <div class="project-thumbnail-wrapper">
+              <img src="./assets/Project/Project-Jersell.png" alt="Tangkapan layar proyek Jersell Sport Jersey Store" class="project-thumbnail" loading="lazy">
+              <span class="project-category-tag">E-Commerce Web</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Jersell Sport Jersey Store</h3>
+              <p class="project-summary">
+                Toko online katalog jersey olahraga dengan kemudahan pencarian produk, filter varian, dan tata letak responsif.
+              </p>
+              <div class="project-tags-list">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Responsive Design</span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/Jallrijal/jersell" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  <span>Source Code</span>
+                </a>
+                <a href="#contact" class="btn btn-sm btn-ghost">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Detail</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: KanbanFlow -->
+          <article class="project-card">
+            <div class="project-thumbnail-wrapper">
+              <img src="./assets/Project/Project-Kanbanflow.png" alt="Tangkapan layar proyek KanbanFlow Task Manager" class="project-thumbnail" loading="lazy">
+              <span class="project-category-tag">Productivity Tool</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">KanbanFlow Task Manager</h3>
+              <p class="project-summary">
+                Aplikasi manajemen tugas bergaya visual drag-and-drop dengan sinkronisasi penyimpanan lokal browser secara instan.
+              </p>
+              <div class="project-tags-list">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Drag & Drop API</span>
+                <span class="tech-tag">LocalStorage</span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/Jallrijal/kanbanflow" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  <span>Source Code</span>
+                </a>
+                <a href="#contact" class="btn btn-sm btn-ghost">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Detail</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Sipadeceng -->
+          <article class="project-card">
+            <div class="project-thumbnail-wrapper">
+              <img src="./assets/Project/Project-Sipadeceng.png" alt="Tangkapan layar proyek Sipadeceng Information System" class="project-thumbnail" loading="lazy">
+              <span class="project-category-tag">Information System</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Sipadeceng Information System</h3>
+              <p class="project-summary">
+                Sistem informasi pelayanan administrasi publik terstruktur dengan dasbor navigasi yang ramah pengguna dan terorganisir.
+              </p>
+              <div class="project-tags-list">
+                <span class="tech-tag">Web System</span>
+                <span class="tech-tag">Dashboard UI</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/Jallrijal/sipadeceng" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  <span>Source Code</span>
+                </a>
+                <a href="#contact" class="btn btn-sm btn-ghost">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                  <span>Detail</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. Section: Experience
+         ===================================================================== -->
+    <section id="experience" class="section experience-section" aria-labelledby="experience-heading">
+      <div class="section-container">
+        <!-- Section Header -->
+        <header class="section-header">
+          <p class="section-subtitle">Jejak Langkah & Perjalanan Karier</p>
+          <h2 class="section-title" id="experience-heading">Work Experience</h2>
+        </header>
+
+        <!-- Timeline Container -->
+        <div class="timeline-container">
+          <!-- Timeline Entry 1 -->
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="timeline-dot"></span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-badge">Freelance</span>
+                <span class="timeline-period">2023 - Sekarang</span>
+              </div>
+              <h3 class="timeline-role">Freelance Web Developer</h3>
+              <p class="timeline-company">Mandiri / Self-Employed &bull; Remote, Indonesia</p>
+              <p class="timeline-desc">
+                Merancang dan membangun situs web kustom untuk klien personal maupun usaha kecil, mengutamakan kecepatan akses, tata letak responsif, dan interaktivitas yang rapi.
+              </p>
+              <ul class="timeline-achievements" role="list">
+                <li>Menyelesaikan lebih dari 10 proyek website tepat waktu dengan tingkat kepuasan klien yang tinggi.</li>
+                <li>Menerapkan animasi interaktif berbasis GSAP untuk menghidupkan antarmuka tanpa mengorbankan performa muat halaman.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Timeline Entry 2 -->
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="timeline-dot"></span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-badge badge-intern">Magang</span>
+                <span class="timeline-period">2023 - 2024</span>
+              </div>
+              <h3 class="timeline-role">Frontend Web Intern</h3>
+              <p class="timeline-company">Tech Studio / Mitra Digital &bull; Indonesia</p>
+              <p class="timeline-desc">
+                Membantu tim pengembang dalam slicing desain Figma ke kode HTML dan CSS semantik, memperbaiki tata letak antarmuka lintas peramban, serta merapikan interaksi skrip.
+              </p>
+              <ul class="timeline-achievements" role="list">
+                <li>Mengonversi rancangan mockup Figma menjadi halaman web responsif dengan akurasi visual yang presisi.</li>
+                <li>Mengoptimalkan aset gambar dan penataan stylesheet guna mempercepat proses rendering awal browser.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. Section: Contact (Tautan Komunikasi Nyata Tanpa Form Pengiriman)
+         ===================================================================== -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="section-container">
+        <!-- Section Header -->
+        <header class="section-header">
+          <p class="section-subtitle">Mari Terhubung & Berkolaborasi</p>
+          <h2 class="section-title" id="contact-heading">Contact</h2>
+        </header>
+
+        <div class="contact-card-main">
+          <p class="contact-intro">
+            Tertarik untuk berkolaborasi dalam proyek web atau ingin berdiskusi seputar frontend development? Silakan hubungi saya melalui tautan di bawah ini.
+          </p>
+
+          <!-- Real Verified Contact Links Grid -->
+          <div class="contact-links-grid">
+            <!-- Email -->
+            <a href="mailto:rijalimamulhaq28@gmail.com" class="contact-item-card" aria-label="Kirim pesan email ke rijalimamulhaq28@gmail.com">
+              <div class="contact-item-icon icon-email" aria-hidden="true">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="contact-item-details">
+                <span class="contact-platform">Email</span>
+                <span class="contact-label">rijalimamulhaq28@gmail.com</span>
+              </div>
+              <div class="contact-arrow" aria-hidden="true">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/rijall" target="_blank" rel="noopener noreferrer" class="contact-item-card" aria-label="Buka profil LinkedIn Rijal">
+              <div class="contact-item-icon icon-linkedin" aria-hidden="true">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </div>
+              <div class="contact-item-details">
+                <span class="contact-platform">LinkedIn</span>
+                <span class="contact-label">linkedin.com/in/rijall</span>
+              </div>
+              <div class="contact-arrow" aria-hidden="true">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/Jallrijal" target="_blank" rel="noopener noreferrer" class="contact-item-card" aria-label="Kunjungi akun GitHub Jallrijal">
+              <div class="contact-item-icon icon-github" aria-hidden="true">
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div class="contact-item-details">
+                <span class="contact-platform">GitHub</span>
+                <span class="contact-label">github.com/Jallrijal</span>
+              </div>
+              <div class="contact-arrow" aria-hidden="true">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6281200000000" target="_blank" rel="noopener noreferrer" class="contact-item-card" aria-label="Kirim pesan WhatsApp">
+              <div class="contact-item-icon icon-whatsapp" aria-hidden="true">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="contact-item-details">
+                <span class="contact-platform">WhatsApp</span>
+                <span class="contact-label">Chat WhatsApp</span>
+              </div>
+              <div class="contact-arrow" aria-hidden="true">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/rii.jall_" target="_blank" rel="noopener noreferrer" class="contact-item-card" aria-label="Kunjungi profil Instagram @rii.jall_">
+              <div class="contact-item-icon icon-instagram" aria-hidden="true">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <div class="contact-item-details">
+                <span class="contact-platform">Instagram</span>
+                <span class="contact-label">@rii.jall_</span>
+              </div>
+              <div class="contact-arrow" aria-hidden="true">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-badge">R</span>
+          <span class="brand-text">Rijal Imamul Haq</span>
+        </div>
+        <p class="footer-tagline">Web Developer &bull; Frontend Specialist</p>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Rijal Imamul Haq Syamsu Alam. Seluruh hak cipta dilindungi.</p>
+        <div class="footer-links">
+          <a href="#home" class="footer-link">Kembali ke Atas</a>
+          <span class="footer-divider" aria-hidden="true">&bull;</span>
+          <!-- Link kecil ke CMS sesuai PRD: "link kecil di footer portfolio" -->
+          <a href="./login.html" class="footer-link footer-login-link">Kelola Portofolio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP Library & Plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
-  <!-- Main JavaScript -->
+  <!-- Storage Module & Main Script -->
+  <script type="module" src="./js/storage.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
