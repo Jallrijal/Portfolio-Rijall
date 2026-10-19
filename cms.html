@@ -261,6 +261,36 @@
       color: var(--text-primary);
     }
 
+    .cms-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .topbar-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      min-height: 38px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+
+    .topbar-action-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
     .topbar-logout-btn {
       display: inline-flex;
       align-items: center;
@@ -797,8 +827,13 @@
         display: inline-flex;
       }
 
+      .topbar-action-btn span,
       .topbar-logout-btn span {
         display: none;
+      }
+
+      .topbar-action-btn {
+        padding: 0 0.65rem;
       }
 
       .cms-content {
@@ -898,7 +933,16 @@
           </button>
           <h1 class="cms-page-title" id="currentSectionTitle">Hero</h1>
         </div>
-        <div>
+        <div class="cms-topbar-right">
+          <button type="button" class="topbar-action-btn" id="btnExportJson" title="Unduh semua data portofolio sebagai file JSON" aria-label="Unduh semua data portofolio">
+            <i class="fa-solid fa-download" aria-hidden="true"></i>
+            <span>Export JSON</span>
+          </button>
+          <label class="topbar-action-btn" for="importJsonFileInput" title="Unggah file JSON untuk memuat data ke browser" aria-label="Unggah file JSON portofolio">
+            <i class="fa-solid fa-upload" aria-hidden="true"></i>
+            <span>Import JSON</span>
+            <input type="file" id="importJsonFileInput" accept=".json,application/json" class="cms-file-input">
+          </label>
           <button class="topbar-logout-btn" id="logout-btn-topbar" aria-label="Logout dari CMS">
             <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
             <span>Logout</span>
@@ -1444,7 +1488,7 @@
   <div class="cms-toast-container" id="cmsToastContainer" aria-live="polite"></div>
 
   <script type="module">
-    import { getData, saveData, resetSection } from './js/storage.js';
+    import { getData, saveData, resetSection, exportAll, importAll, validatePortfolioData } from './js/storage.js';
 
     // --- Helper Sanitasi HTML ---
     function escapeHtml(str) {
@@ -2840,7 +2884,87 @@
     });
 
     // =========================================================================
-    // 6. SHELL CONTROLLER (Sidebar, Navigation, Logout & Inisialisasi)
+    // 6. EXPORT / IMPORT JSON (Unduh & Unggah Berkas dengan Validasi Struktur)
+    // =========================================================================
+    async function doExportJson() {
+      try {
+        const dataString = await exportAll(true);
+        const blob = new Blob([dataString], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const dateStr = new Date().toISOString().slice(0, 10);
+        const filename = `portfolio-data-${dateStr}.json`;
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showToast(`Seluruh data berhasil diekspor (${filename})!`, 'success');
+      } catch (err) {
+        console.error('Gagal mengekspor data portofolio:', err);
+        showToast('Gagal mengekspor data: ' + err.message, 'error');
+      }
+    }
+
+    function doImportJsonFile(file) {
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onerror = () => {
+        showToast('Gagal membaca berkas JSON yang dipilih.', 'error');
+      };
+      reader.onload = async (e) => {
+        try {
+          const content = e.target.result;
+
+          // 1. Validasi struktur sebelum menimpa localStorage
+          const validation = validatePortfolioData(content);
+          if (!validation.valid) {
+            showToast(validation.message, 'error');
+            return;
+          }
+
+          // 2. Konfirmasi pengguna
+          const sectionsText = validation.sectionsFound.join(', ');
+          const confirmed = confirm(
+            `Berkas JSON valid ditemukan!\n\nMemuat ${validation.sectionsFound.length} section: [${sectionsText}].\n\nApakah Anda yakin ingin menimpa data di browser (localStorage) dengan data berkas ini?`
+          );
+
+          if (!confirmed) {
+            showToast('Proses impor berkas JSON dibatalkan.');
+            return;
+          }
+
+          // 3. Simpan ke localStorage dengan importAll
+          const result = importAll(validation.data);
+
+          // 4. Perbarui seluruh form CMS secara otomatis
+          await initCMS();
+
+          showToast(`Berhasil mengimpor data! ${result.sections.length} section telah diperbarui.`, 'success');
+        } catch (err) {
+          console.error('Error saat impor JSON:', err);
+          showToast('Gagal mengimpor data: ' + err.message, 'error');
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    document.getElementById('btnExportJson').addEventListener('click', doExportJson);
+
+    document.getElementById('importJsonFileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        doImportJsonFile(file);
+        e.target.value = '';
+      }
+    });
+
+    // =========================================================================
+    // 7. SHELL CONTROLLER (Sidebar, Navigation, Logout & Inisialisasi)
     // =========================================================================
     function doLogout() {
       sessionStorage.removeItem('portfolio_cms_auth');

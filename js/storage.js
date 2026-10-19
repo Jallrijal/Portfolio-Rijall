@@ -148,30 +148,84 @@ export async function exportAll(asString = false) {
 }
 
 /**
- * Mengimpor data JSON dan menyimpannya per section ke localStorage.
- * Menerima argumen berupa string JSON atau object.
+ * Memvalidasi struktur data JSON portofolio sebelum disimpan ke localStorage.
+ * Memastikan data berupa objek dan memuat minimal satu section valid.
  */
-export function importAll(json) {
+export function validatePortfolioData(json) {
   let parsed = json;
 
   if (typeof json === 'string') {
     try {
       parsed = JSON.parse(json);
     } catch (error) {
-      throw new Error(`Format JSON tidak valid: ${error.message}`);
+      return {
+        valid: false,
+        message: `Format berkas bukan JSON yang valid: ${error.message}`
+      };
     }
   }
 
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-    throw new Error('Data import harus berupa object JSON yang memuat section portofolio.');
+    return {
+      valid: false,
+      message: 'Struktur data utama harus berupa objek JSON (bukan array atau nilai primitif).'
+    };
   }
 
+  const validSections = ['home', 'hero', 'about', 'tools', 'skills', 'projects', 'project', 'experience', 'contact'];
+  const keys = Object.keys(parsed);
+  const foundSections = keys.filter(k => validSections.includes(k.toLowerCase()));
+
+  if (foundSections.length === 0) {
+    return {
+      valid: false,
+      message: 'Berkas JSON tidak memuat satupun section portofolio yang dikenali (home, about, tools, projects, experience, contact).'
+    };
+  }
+
+  const errors = [];
+  for (const [secKey, secVal] of Object.entries(parsed)) {
+    const normalized = normalizeSectionKey(secKey);
+    if (SECTIONS.includes(normalized)) {
+      if (secVal === null || typeof secVal !== 'object') {
+        errors.push(`Data untuk section "${secKey}" harus berupa objek.`);
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    return {
+      valid: false,
+      message: 'Validasi struktur gagal: ' + errors.join('; ')
+    };
+  }
+
+  return {
+    valid: true,
+    data: parsed,
+    sectionsFound: Array.from(new Set(foundSections.map(normalizeSectionKey)))
+  };
+}
+
+/**
+ * Mengimpor data JSON dan menyimpannya per section ke localStorage.
+ * Menerima argumen berupa string JSON atau object dengan validasi struktur.
+ */
+export function importAll(json) {
+  const validation = validatePortfolioData(json);
+  if (!validation.valid) {
+    throw new Error(validation.message);
+  }
+
+  const parsed = validation.data;
   const importedSections = [];
 
   for (const [sectionKey, sectionData] of Object.entries(parsed)) {
     const normalized = normalizeSectionKey(sectionKey);
-    saveData(normalized, sectionData);
-    importedSections.push(normalized);
+    if (SECTIONS.includes(normalized)) {
+      saveData(normalized, sectionData);
+      importedSections.push(normalized);
+    }
   }
 
   return {
