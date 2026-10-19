@@ -3,14 +3,14 @@
 
 <head>
   <script>
-    // Guard autentikasi: periksa status login segera sebelum halaman dirender
     if (!sessionStorage.getItem('portfolio_cms_auth')) {
       window.location.replace('./login.html');
     }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CMS Dashboard - Portfolio</title>
+  <title>CMS Dashboard - Portfolio Rijal</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -20,64 +20,554 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="./css/style.css">
   <style>
-    .cms-container {
-      max-width: var(--container-max-w);
-      margin: 0 auto;
-      padding: var(--space-xl) var(--space-sm);
-    }
-    .cms-header {
+    /* =============================================
+       CMS Shell Layout
+       ============================================= */
+    .cms-layout {
       display: flex;
-      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    /* ----- Sidebar ----- */
+    .cms-sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--bg-surface-elevated);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 50;
+      transition: transform var(--transition-normal);
+    }
+
+    .cms-sidebar-header {
+      display: flex;
       align-items: center;
-      margin-bottom: var(--space-xl);
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: var(--space-md);
-    }
-    .cms-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-    }
-    .cms-actions {
-      display: flex;
       gap: var(--space-xs);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--border-subtle);
+      min-height: 64px;
+    }
+
+    .cms-brand-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-gradient);
+      color: var(--text-on-accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .cms-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .cms-brand-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .cms-brand-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Nav */
+    .cms-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-sm) 0;
+    }
+
+    .cms-nav-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-xs) var(--space-md) var(--space-3xs);
+    }
+
+    .cms-nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      position: relative;
+      font-family: inherit;
+      transition: color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .cms-nav-item .nav-item-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .cms-nav-item:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+
+    .cms-nav-item:hover .nav-item-icon {
+      color: var(--text-primary);
+    }
+
+    .cms-nav-item.is-active {
+      color: var(--accent-primary);
+      background: var(--accent-surface);
+    }
+
+    .cms-nav-item.is-active .nav-item-icon {
+      color: var(--accent-primary);
+    }
+
+    .cms-nav-item.is-active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 55%;
+      background: var(--accent-gradient);
+      border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    }
+
+    /* Sidebar footer */
+    .cms-sidebar-footer {
+      padding: var(--space-sm);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+
+    .cms-footer-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      min-height: 44px;
+      border-radius: var(--radius-sm);
+      transition: color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .cms-footer-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+
+    .btn-logout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-2xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.07);
+      color: #f87171;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-logout:hover {
+      background: rgba(239, 68, 68, 0.14);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
+    /* ----- Main ----- */
+    .cms-main {
+      flex: 1;
+      margin-left: 260px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .cms-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-lg);
+      height: 64px;
+      background: var(--bg-surface-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      gap: var(--space-sm);
+    }
+
+    .cms-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .sidebar-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+
+    .cms-page-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .topbar-logout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      min-height: 38px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(239, 68, 68, 0.22);
+      background: transparent;
+      color: #f87171;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .topbar-logout-btn:hover {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+
+    /* Content */
+    .cms-content {
+      flex: 1;
+      padding: var(--space-lg);
+    }
+
+    .cms-section-panel {
+      display: none;
+    }
+
+    .cms-section-panel.is-active {
+      display: block;
+      animation: panelFadeIn 0.2s ease-out;
+    }
+
+    @keyframes panelFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cms-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-2xl) var(--space-lg);
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .cms-placeholder i {
+      font-size: 2rem;
+      margin-bottom: var(--space-sm);
+      color: var(--border-hover);
+    }
+
+    .cms-placeholder h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2xs);
+    }
+
+    .cms-placeholder p {
+      font-size: 0.875rem;
+    }
+
+    /* Mobile overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 45;
+    }
+
+    /* ----- Responsive ----- */
+    @media (max-width: 768px) {
+      .cms-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .cms-sidebar.is-open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-card);
+      }
+
+      .sidebar-overlay.is-visible {
+        display: block;
+      }
+
+      .cms-main {
+        margin-left: 0;
+      }
+
+      .sidebar-toggle {
+        display: inline-flex;
+      }
+
+      .topbar-logout-btn span {
+        display: none;
+      }
+
+      .cms-content {
+        padding: var(--space-md);
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="cms-layout">
 
-  <div class="cms-container">
-    <header class="cms-header">
-      <div>
-        <h1 class="cms-title">CMS Portfolio Management</h1>
-        <p class="section-subtitle">Panel Pengelolaan Konten Dinamis</p>
+    <!-- SIDEBAR -->
+    <aside class="cms-sidebar" id="cmsSidebar" aria-label="CMS navigation">
+      <div class="cms-sidebar-header">
+        <div class="cms-brand-badge" aria-hidden="true">R.</div>
+        <div class="cms-brand-text">
+          <span class="cms-brand-title">Panel CMS</span>
+          <span class="cms-brand-sub">Portfolio Rijal</span>
+        </div>
       </div>
-      <div class="cms-actions">
-        <a href="./index.html" class="btn btn-secondary">
-          <i class="fa-solid fa-arrow-left"></i>
+
+      <nav class="cms-nav" aria-label="CMS sections">
+        <p class="cms-nav-label">Konten</p>
+        <button class="cms-nav-item is-active" data-section="hero" aria-current="true">
+          <i class="fa-solid fa-house nav-item-icon" aria-hidden="true"></i>
+          <span>Hero</span>
+        </button>
+        <button class="cms-nav-item" data-section="about">
+          <i class="fa-solid fa-user nav-item-icon" aria-hidden="true"></i>
+          <span>About</span>
+        </button>
+        <button class="cms-nav-item" data-section="skills">
+          <i class="fa-solid fa-layer-group nav-item-icon" aria-hidden="true"></i>
+          <span>Skills &amp; Tools</span>
+        </button>
+        <button class="cms-nav-item" data-section="projects">
+          <i class="fa-solid fa-folder-open nav-item-icon" aria-hidden="true"></i>
+          <span>Projects</span>
+        </button>
+        <button class="cms-nav-item" data-section="experience">
+          <i class="fa-solid fa-briefcase nav-item-icon" aria-hidden="true"></i>
+          <span>Experience</span>
+        </button>
+        <button class="cms-nav-item" data-section="contact">
+          <i class="fa-solid fa-envelope nav-item-icon" aria-hidden="true"></i>
+          <span>Contact</span>
+        </button>
+      </nav>
+
+      <div class="cms-sidebar-footer">
+        <a href="./index.html" class="cms-footer-link">
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
           <span>Lihat Portfolio</span>
         </a>
-        <button id="logout-btn" class="btn btn-primary">
-          <i class="fa-solid fa-right-from-bracket"></i>
+        <button class="btn-logout" id="logout-btn-sidebar">
+          <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
           <span>Logout</span>
         </button>
       </div>
-    </header>
+    </aside>
 
-    <main>
-      <div class="stat-card" style="padding: var(--space-lg);">
-        <h3>Selamat datang di Panel CMS Portofolio</h3>
-        <p style="color: var(--text-muted); margin-top: var(--space-2xs);">
-          Anda telah berhasil masuk ke CMS. Konten portofolio saat ini dirender secara dinamis dari localStorage dan seed data melalui <code>js/render.js</code>.
-        </p>
-      </div>
-    </main>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- MAIN -->
+    <div class="cms-main">
+      <header class="cms-topbar">
+        <div class="cms-topbar-left">
+          <button class="sidebar-toggle" id="sidebarToggle"
+            aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="cmsSidebar">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+          <h1 class="cms-page-title" id="currentSectionTitle">Hero</h1>
+        </div>
+        <div>
+          <button class="topbar-logout-btn" id="logout-btn-topbar" aria-label="Logout dari CMS">
+            <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="cms-content" id="cmsContent">
+
+        <div class="cms-section-panel is-active" id="panel-hero">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            <h3>Section: Hero</h3>
+            <p>Editor konten untuk section Hero akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+        <div class="cms-section-panel" id="panel-about">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            <h3>Section: About</h3>
+            <p>Editor konten untuk section About akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+        <div class="cms-section-panel" id="panel-skills">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            <h3>Section: Skills &amp; Tools</h3>
+            <p>Editor konten untuk Skills &amp; Tools akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+        <div class="cms-section-panel" id="panel-projects">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+            <h3>Section: Projects</h3>
+            <p>Editor konten untuk Projects akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+        <div class="cms-section-panel" id="panel-experience">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            <h3>Section: Experience</h3>
+            <p>Editor konten untuk Experience akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+        <div class="cms-section-panel" id="panel-contact">
+          <div class="cms-placeholder">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <h3>Section: Contact</h3>
+            <p>Editor konten untuk Contact akan ditambahkan di sini.</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
   </div>
 
   <script>
-    document.getElementById('logout-btn')?.addEventListener('click', () => {
+    // --- Logout ---
+    function doLogout() {
       sessionStorage.removeItem('portfolio_cms_auth');
       window.location.replace('./login.html');
+    }
+    document.getElementById('logout-btn-sidebar').addEventListener('click', doLogout);
+    document.getElementById('logout-btn-topbar').addEventListener('click', doLogout);
+
+    // --- Section navigation ---
+    const navItems  = document.querySelectorAll('.cms-nav-item[data-section]');
+    const panels    = document.querySelectorAll('.cms-section-panel');
+    const pageTitle = document.getElementById('currentSectionTitle');
+
+    const sectionLabels = {
+      hero:       'Hero',
+      about:      'About',
+      skills:     'Skills & Tools',
+      projects:   'Projects',
+      experience: 'Experience',
+      contact:    'Contact',
+    };
+
+    function switchSection(target) {
+      navItems.forEach(item => {
+        const active = item.dataset.section === target;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+      panels.forEach(panel => {
+        panel.classList.toggle('is-active', panel.id === `panel-${target}`);
+      });
+      pageTitle.textContent = sectionLabels[target] ?? target;
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        switchSection(item.dataset.section);
+        if (window.innerWidth <= 768) closeSidebar();
+      });
+    });
+
+    // --- Mobile sidebar toggle ---
+    const sidebar   = document.getElementById('cmsSidebar');
+    const overlay   = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebarToggle');
+
+    function openSidebar() {
+      sidebar.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      overlay.removeAttribute('aria-hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.contains('is-open') ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sidebar.classList.contains('is-open')) closeSidebar();
     });
   </script>
 </body>
