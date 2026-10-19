@@ -19,6 +19,7 @@ export function normalizeSectionKey(section) {
   if (typeof section !== 'string') return '';
   const trimmed = section.trim().toLowerCase();
   if (trimmed === 'hero') return 'home';
+  if (trimmed === 'skills' || trimmed === 'skill') return 'tools';
   if (trimmed === 'project') return 'projects';
   if (trimmed === 'about-me' || trimmed === 'aboutme') return 'about';
   return trimmed;
@@ -122,6 +123,11 @@ export function saveData(section, data) {
     }
     return true;
   } catch (error) {
+    if (error.name === 'QuotaExceededError' || error.name === 'NS_ERROR_DOM_QUOTA_REACHED' || error.code === 22) {
+      const quotaErr = new Error('Kapasitas penyimpanan browser (localStorage ~5MB) terlampaui (QuotaExceededError).');
+      quotaErr.name = 'QuotaExceededError';
+      throw quotaErr;
+    }
     console.error(`Gagal menyimpan data section "${normalized}" ke localStorage:`, error);
     throw error;
   }
