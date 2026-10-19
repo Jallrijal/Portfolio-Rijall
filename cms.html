@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Dashboard - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .cms-container {
+      max-width: var(--container-max-w);
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-sm);
+    }
+    .cms-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: var(--space-md);
+    }
+    .cms-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+    .cms-actions {
+      display: flex;
+      gap: var(--space-xs);
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // Periksa status login sesuai PRD
+    if (!sessionStorage.getItem('portfolio_cms_auth')) {
+      window.location.replace('./login.html');
+    }
+  </script>
+
+  <div class="cms-container">
+    <header class="cms-header">
+      <div>
+        <h1 class="cms-title">CMS Portfolio Management</h1>
+        <p class="section-subtitle">Panel Pengelolaan Konten Dinamis</p>
+      </div>
+      <div class="cms-actions">
+        <a href="./index.html" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Lihat Portfolio</span>
+        </a>
+        <button id="logout-btn" class="btn btn-primary">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="stat-card" style="padding: var(--space-lg);">
+        <h3>Selamat datang di Panel CMS Portofolio</h3>
+        <p style="color: var(--text-muted); margin-top: var(--space-2xs);">
+          Anda telah berhasil masuk ke CMS. Konten portofolio saat ini dirender secara dinamis dari localStorage dan seed data melalui <code>js/render.js</code>.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('logout-btn')?.addEventListener('click', () => {
+      sessionStorage.removeItem('portfolio_cms_auth');
+      window.location.replace('./login.html');
+    });
+  </script>
+</body>
+
+</html>

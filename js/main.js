@@ -1,70 +1,44 @@
 /**
- * Main JavaScript Portfolio - Rijal Imamul Haq
- * Fitur:
- * 1. Dark Mode & Light Mode Switcher dengan penyimpanan localStorage
- * 2. Mobile Drawer Navigation & Aksesibilitas Keyboard (Escape, Tab)
- * 3. Smooth Scroll & Active Section Indicator (IntersectionObserver Scroll Spy)
- * 4. Animated Role Rotator (Typewriter Effect)
- * 5. Interaktivitas Filter Kategori Tools
- * 6. GSAP Scroll Trigger Entrance Animations
+ * main.js - Core Portfolio Script
+ * Menginisialisasi rendering dinamis DOM dari render.js dan mengelola interaktivitas UI:
+ * - Tema gelap/terang (Theme Toggle)
+ * - Navigasi mobile (Drawer)
+ * - Scroll spy & smooth scroll
+ * - Animasi teks peran rotasi (Typewriter)
+ * - Filter kategori Tools
+ * - Animasi masuk GSAP & ScrollTrigger
  */
 
-function initApp() {
-  initTheme();
-  initMobileMenu();
-  initScrollSpy();
-  initTypewriter();
-  initToolsFilter();
-  initGsapAnimations();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
+import { renderApp } from './render.js';
 
 /* ==========================================================================
-   1. Theme Switcher (Dark & Light Mode via localStorage)
+   1. Theme Management (Dark / Light Mode)
    ========================================================================== */
-function initTheme() {
+function initThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
   if (!themeToggle) return;
 
-  const THEME_STORAGE_KEY = 'theme';
-  const root = document.documentElement;
-
-  // Baca tema saat ini (default: 'dark')
-  function getCurrentTheme() {
-    return root.getAttribute('data-theme') || localStorage.getItem(THEME_STORAGE_KEY) || 'dark';
+  function getSavedTheme() {
+    return localStorage.getItem('theme') || 'dark';
   }
 
-  // Terapkan tema ke elemen root & update aria
   function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
-      localStorage.setItem('portfolio_theme', theme);
-    } catch (e) {
-      console.warn('LocalStorage tidak dapat diakses untuk menyimpan tema:', e);
-    }
-
-    const isDark = theme === 'dark';
-    themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-    themeToggle.setAttribute('title', isDark ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap');
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
   }
 
-  // Sinkronkan state awal tombol
-  applyTheme(getCurrentTheme());
+  // Terapkan tema awal
+  applyTheme(getSavedTheme());
 
-  // Event listener klik tombol
-  themeToggle.addEventListener('click', (e) => {
+  // Lepaskan listener lama jika ada
+  themeToggle.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const currentTheme = getCurrentTheme();
+    const currentTheme = getSavedTheme();
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(nextTheme);
-  });
+  };
 }
 
 /* ==========================================================================
@@ -83,46 +57,44 @@ function initMobileMenu() {
     mobileToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
   }
 
-  mobileToggle.addEventListener('click', (e) => {
+  mobileToggle.onclick = (e) => {
     e.stopPropagation();
     toggleMenu();
-  });
+  };
 
-  // Tutup menu saat salah satu link navigasi ditekan
   navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+    link.onclick = () => {
       toggleMenu(false);
-    });
+    };
   });
 
-  // Tutup menu saat menekan tombol Escape
-  document.addEventListener('keydown', (e) => {
+  document.onkeydown = (e) => {
     if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
       toggleMenu(false);
       mobileToggle.focus();
     }
-  });
+  };
 
-  // Tutup menu jika pengguna mengklik area luar menu
-  document.addEventListener('click', (e) => {
+  document.onclick = (e) => {
     if (navMenu.classList.contains('is-open')) {
       if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
         toggleMenu(false);
       }
     }
-  });
+  };
 }
 
 /* ==========================================================================
    3. Active Section Indicator (Scroll Spy) & Smooth Scrolling
    ========================================================================== */
+let activeObserver = null;
+
 function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link[data-section]');
 
   if (sections.length === 0 || navLinks.length === 0) return;
 
-  // Set active link
   function setActiveLink(sectionId) {
     navLinks.forEach((link) => {
       const targetSection = link.getAttribute('data-section');
@@ -136,7 +108,6 @@ function initScrollSpy() {
     });
   }
 
-  // Smooth scroll click handler
   navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       const targetId = link.getAttribute('href');
@@ -146,22 +117,25 @@ function initScrollSpy() {
           e.preventDefault();
           targetElement.scrollIntoView({ behavior: 'smooth' });
           setActiveLink(link.getAttribute('data-section'));
-          if (history.pushState) {
-            history.pushState(null, '', targetId);
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', targetId);
           }
         }
       }
     });
   });
 
-  // Gunakan IntersectionObserver untuk penanda section aktif secara performan
+  if (activeObserver) {
+    activeObserver.disconnect();
+  }
+
   const observerOptions = {
     root: null,
     rootMargin: '-15% 0px -60% 0px',
     threshold: 0
   };
 
-  const observer = new IntersectionObserver((entries) => {
+  activeObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setActiveLink(entry.target.id);
@@ -170,22 +144,31 @@ function initScrollSpy() {
   }, observerOptions);
 
   sections.forEach((section) => {
-    observer.observe(section);
+    activeObserver.observe(section);
   });
 }
 
 /* ==========================================================================
    4. Animated Role Rotator (Typewriter Subtitle)
    ========================================================================== */
-function initTypewriter() {
+let typewriterTimeout = null;
+
+function initTypewriter(customRoles) {
   const target = document.getElementById('typewriter-text');
   if (!target) return;
 
-  const roles = [
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
+  }
+
+  const defaultRoles = [
     'Web Developer',
     'Frontend Specialist',
     'UI/UX Enthusiast'
   ];
+
+  const roles = (Array.isArray(customRoles) && customRoles.length > 0) ? customRoles : defaultRoles;
 
   let roleIndex = 0;
   let charIndex = 0;
@@ -194,14 +177,13 @@ function initTypewriter() {
   const pauseEnd = 2200;
   const pauseStart = 500;
 
-  // Jika pengguna menyetel preferensi minim animasi
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    target.textContent = roles[0];
+    target.textContent = roles[0] || '';
     return;
   }
 
   function type() {
-    const currentRole = roles[roleIndex];
+    const currentRole = roles[roleIndex] || '';
 
     if (isDeleting) {
       target.textContent = currentRole.substring(0, charIndex - 1);
@@ -222,10 +204,10 @@ function initTypewriter() {
       typingDelay = pauseStart;
     }
 
-    setTimeout(type, typingDelay);
+    typewriterTimeout = setTimeout(type, typingDelay);
   }
 
-  setTimeout(type, pauseStart);
+  typewriterTimeout = setTimeout(type, pauseStart);
 }
 
 /* ==========================================================================
@@ -238,8 +220,7 @@ function initToolsFilter() {
   if (filterChips.length === 0 || toolCards.length === 0) return;
 
   filterChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      // Perbarui status chip aktif
+    chip.onclick = () => {
       filterChips.forEach((btn) => {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
@@ -249,7 +230,6 @@ function initToolsFilter() {
 
       const selectedCategory = chip.getAttribute('data-filter');
 
-      // Tampilkan atau sembunyikan kartu tools
       toolCards.forEach((card) => {
         const cardCategory = card.getAttribute('data-category');
         if (selectedCategory === 'all' || cardCategory === selectedCategory) {
@@ -260,7 +240,7 @@ function initToolsFilter() {
           card.style.opacity = '0';
         }
       });
-    });
+    };
   });
 }
 
@@ -278,34 +258,42 @@ function initGsapAnimations() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animasi masuk awal pada Hero
-  gsap.from('.hero-content > *', {
-    y: 25,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.12,
-    ease: 'power3.out'
-  });
+  // Bersihkan trigger lama sebelum membuat baru (agar tidak duplikat saat re-render)
+  const allTriggers = ScrollTrigger.getAll();
+  allTriggers.forEach(t => t.kill());
 
-  gsap.from('.hero-visual', {
-    scale: 0.94,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out',
-    delay: 0.2
-  });
+  // Animasi Hero
+  if (document.querySelector('.hero-content > *')) {
+    gsap.from('.hero-content > *', {
+      y: 20,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power3.out'
+    });
+  }
 
-  // Animasi section title reveal saat di-scroll
+  if (document.querySelector('.hero-visual')) {
+    gsap.from('.hero-visual', {
+      scale: 0.95,
+      opacity: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+      delay: 0.15
+    });
+  }
+
+  // Animasi reveal section headers saat di-scroll
   gsap.utils.toArray('.section-header').forEach((header) => {
     gsap.from(header, {
       scrollTrigger: {
         trigger: header,
-        start: 'top 85%',
+        start: 'top 88%',
         toggleActions: 'play none none none'
       },
-      y: 30,
+      y: 25,
       opacity: 0,
-      duration: 0.7,
+      duration: 0.6,
       ease: 'power2.out'
     });
   });
@@ -315,14 +303,39 @@ function initGsapAnimations() {
     gsap.from(card, {
       scrollTrigger: {
         trigger: card,
-        start: 'top 88%',
+        start: 'top 90%',
         toggleActions: 'play none none none'
       },
-      y: 35,
+      y: 30,
       opacity: 0,
-      duration: 0.65,
-      delay: (index % 3) * 0.1,
+      duration: 0.55,
+      delay: (index % 3) * 0.08,
       ease: 'power2.out'
     });
   });
 }
+
+/* ==========================================================================
+   7. Inisialisasi Seluruh Fitur Interaktif setelah Render DOM
+   ========================================================================== */
+function setupInteractiveBehaviors(eventDetail) {
+  initThemeToggle();
+  initMobileMenu();
+  initScrollSpy();
+
+  const typewriterRoles = eventDetail?.home?.typewriterRoles;
+  initTypewriter(typewriterRoles);
+
+  initToolsFilter();
+  initGsapAnimations();
+}
+
+// Tangkap event saat render.js selesai membangun DOM
+window.addEventListener('portfolio:rendered', (e) => {
+  setupInteractiveBehaviors(e.detail);
+});
+
+// Jalankan proses render aplikasi saat DOM siap
+document.addEventListener('DOMContentLoaded', async () => {
+  await renderApp();
+});
