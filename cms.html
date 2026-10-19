@@ -2,6 +2,12 @@
 <html lang="id" data-theme="dark">
 
 <head>
+  <script>
+    // Guard autentikasi: periksa status login segera sebelum halaman dirender
+    if (!sessionStorage.getItem('portfolio_cms_auth')) {
+      window.location.replace('./login.html');
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CMS Dashboard - Portfolio</title>
@@ -39,12 +45,6 @@
 </head>
 
 <body>
-  <script>
-    // Periksa status login sesuai PRD
-    if (!sessionStorage.getItem('portfolio_cms_auth')) {
-      window.location.replace('./login.html');
-    }
-  </script>
 
   <div class="cms-container">
     <header class="cms-header">
