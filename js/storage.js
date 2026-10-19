@@ -18,6 +18,7 @@ let seedCache = null;
 export function normalizeSectionKey(section) {
   if (typeof section !== 'string') return '';
   const trimmed = section.trim().toLowerCase();
+  if (trimmed === 'hero') return 'home';
   if (trimmed === 'project') return 'projects';
   if (trimmed === 'about-me' || trimmed === 'aboutme') return 'about';
   return trimmed;

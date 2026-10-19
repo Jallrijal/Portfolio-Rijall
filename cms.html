@@ -338,6 +338,431 @@
       z-index: 45;
     }
 
+    /* =============================================
+       CMS Form Controls, Cards, Lists & Toasts
+       ============================================= */
+    .cms-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cms-panel-header-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .cms-panel-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .cms-panel-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .cms-panel-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .cms-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .cms-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cms-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+
+    .cms-card-title i {
+      color: var(--accent-primary);
+      font-size: 0.95rem;
+    }
+
+    .cms-card-badge {
+      font-size: 0.725rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-pill);
+      background: var(--accent-surface);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-border);
+    }
+
+    .cms-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .cms-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .cms-form-group {
+      margin-bottom: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .cms-form-group.no-mb {
+      margin-bottom: 0;
+    }
+
+    .cms-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cms-input,
+    .cms-textarea,
+    .cms-select {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      min-height: 44px;
+    }
+
+    .cms-textarea {
+      min-height: 86px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .cms-input:focus,
+    .cms-textarea:focus,
+    .cms-select:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-surface);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .cms-help-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Image upload control with preview */
+    .cms-image-field {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cms-img-preview {
+      width: 68px;
+      height: 68px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      object-fit: cover;
+      background: var(--bg-surface);
+      flex-shrink: 0;
+    }
+
+    .cms-image-controls {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .cms-file-btn-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+
+    .cms-file-input {
+      display: none;
+    }
+
+    .btn-file-select {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.825rem;
+      font-weight: 500;
+      cursor: pointer;
+      min-height: 38px;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .btn-file-select:hover {
+      color: var(--text-primary);
+      background: var(--border-subtle);
+      border-color: var(--border-hover);
+    }
+
+    /* List Containers & Cards */
+    .cms-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .cms-item-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      position: relative;
+      transition: border-color var(--transition-fast);
+    }
+
+    .cms-item-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .cms-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-sm);
+      padding-bottom: var(--space-2xs);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .cms-item-badge {
+      font-size: 0.775rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      background: var(--accent-surface);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-remove-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.08);
+      color: #f87171;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      min-height: 36px;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-remove-item:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.5);
+    }
+
+    .cms-checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+      min-height: 44px;
+    }
+
+    .cms-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+    /* Common Buttons */
+    .btn-cms-save {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2xs);
+      min-height: 44px;
+      padding: 0.65rem 1.4rem;
+      background: var(--accent-gradient);
+      color: var(--text-on-accent);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+      transition: transform var(--transition-fast), opacity var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-cms-save:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-cms-save:active {
+      transform: translateY(0);
+    }
+
+    .btn-cms-reset {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2xs);
+      min-height: 44px;
+      padding: 0.65rem 1.1rem;
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .btn-cms-reset:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .btn-cms-add {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2xs);
+      min-height: 44px;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-surface);
+      color: var(--accent-primary);
+      border: 1px dashed var(--accent-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-cms-add:hover {
+      background: var(--accent-surface);
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+    }
+
+    /* Toast System */
+    .cms-toast-container {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .cms-toast {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 0.85rem 1.25rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-card);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      pointer-events: auto;
+      animation: toastSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.2s, transform 0.2s;
+      max-width: 380px;
+    }
+
+    .cms-toast.is-success {
+      border-left: 4px solid var(--accent-primary);
+    }
+
+    .cms-toast.is-success .toast-icon {
+      color: var(--accent-primary);
+      font-size: 1rem;
+    }
+
+    .cms-toast.is-error {
+      border-left: 4px solid #ef4444;
+    }
+
+    .cms-toast.is-error .toast-icon {
+      color: #ef4444;
+      font-size: 1rem;
+    }
+
+    @keyframes toastSlideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* ----- Responsive ----- */
     @media (max-width: 768px) {
       .cms-sidebar {
@@ -367,6 +792,31 @@
 
       .cms-content {
         padding: var(--space-md);
+      }
+
+      .cms-grid-2,
+      .cms-grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .cms-panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cms-panel-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .cms-toast-container {
+        left: var(--space-sm);
+        right: var(--space-sm);
+        bottom: var(--space-sm);
+      }
+
+      .cms-toast {
+        max-width: 100%;
       }
     }
   </style>
@@ -447,20 +897,242 @@
 
       <main class="cms-content" id="cmsContent">
 
+        <!-- PANEL HERO / HOME -->
         <div class="cms-section-panel is-active" id="panel-hero">
-          <div class="cms-placeholder">
-            <i class="fa-solid fa-house" aria-hidden="true"></i>
-            <h3>Section: Hero</h3>
-            <p>Editor konten untuk section Hero akan ditambahkan di sini.</p>
-          </div>
+          <header class="cms-panel-header">
+            <div class="cms-panel-header-info">
+              <h2 class="cms-panel-heading">Editor Section: Home (Hero)</h2>
+              <p class="cms-panel-desc">Kelola teks perkenalan utama, peran berjalan (typewriter), foto profil, tombol aksi (CTA), dan metrik statistik.</p>
+            </div>
+            <div class="cms-panel-actions">
+              <button type="button" class="btn-cms-reset" id="btnResetHome" aria-label="Kembalikan data hero ke default">
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                <span>Reset Default</span>
+              </button>
+              <button type="button" class="btn-cms-save" id="btnSaveHome" aria-label="Simpan perubahan section hero">
+                <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                <span>Simpan Home</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Card 1: Data Tunggal Hero -->
+          <section class="cms-form-card" aria-labelledby="card-hero-single-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-hero-single-title">
+                <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                <span>Identitas &amp; Teks Pengantar</span>
+              </h3>
+              <span class="cms-card-badge">Data Tunggal</span>
+            </div>
+
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label for="home-name" class="cms-label">Nama Lengkap</label>
+                <input type="text" id="home-name" class="cms-input" placeholder="Contoh: Rijal Imamul Haq Syamsu Alam" required>
+              </div>
+              <div class="cms-form-group">
+                <label for="home-nickname" class="cms-label">Nama Panggilan</label>
+                <input type="text" id="home-nickname" class="cms-input" placeholder="Contoh: Rijal">
+              </div>
+            </div>
+
+            <div class="cms-form-group">
+              <label for="home-badge" class="cms-label">Status Badge (Kapsul Status)</label>
+              <input type="text" id="home-badge" class="cms-input" placeholder="Contoh: Terbuka untuk Peluang Kerja &amp; Freelance">
+              <p class="cms-help-text">Teks status yang tampil melayang dengan lampu hijau di bagian atas hero.</p>
+            </div>
+
+            <div class="cms-form-group">
+              <label for="home-typewriter" class="cms-label">Fokus Peran (Typewriter Text)</label>
+              <textarea id="home-typewriter" class="cms-textarea" rows="2" placeholder="Web Developer, Frontend Specialist, UI/UX Enthusiast"></textarea>
+              <p class="cms-help-text">Tuliskan peran yang berganti-ganti di hero. Pisahkan tiap peran dengan koma (,) atau baris baru.</p>
+            </div>
+
+            <div class="cms-form-group">
+              <label for="home-bio" class="cms-label">Ringkasan Bio / Tagline</label>
+              <textarea id="home-bio" class="cms-textarea" rows="3" placeholder="Membangun antarmuka web modern, responsif, dan interaktif..."></textarea>
+            </div>
+
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Foto Profil / Avatar Hero</label>
+              <div class="cms-image-field">
+                <img id="home-avatar-preview" src="./assets/Profil/Img-Profil.jpeg" alt="Pratinjau Foto Profil" class="cms-img-preview">
+                <div class="cms-image-controls">
+                  <input type="text" id="home-avatar" class="cms-input" placeholder="./assets/Profil/Img-Profil.jpeg atau URL gambar">
+                  <div class="cms-file-btn-wrapper">
+                    <label for="home-avatar-file" class="btn-file-select">
+                      <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+                      <span>Unggah Foto (Otomatis Kompres)</span>
+                    </label>
+                    <input type="file" id="home-avatar-file" class="cms-file-input" accept="image/*">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Card 2: List Link CTA Buttons -->
+          <section class="cms-form-card" aria-labelledby="card-hero-cta-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-hero-cta-title">
+                <i class="fa-solid fa-link" aria-hidden="true"></i>
+                <span>Tombol Aksi Hero (CTA Buttons)</span>
+              </h3>
+              <span class="cms-card-badge">List Link</span>
+            </div>
+
+            <p class="cms-help-text" style="margin-bottom: var(--space-sm);">
+              Daftar tombol navigasi cepat di bawah bio hero (contoh: Lihat Proyek, Hubungi Saya).
+            </p>
+
+            <div class="cms-list-container" id="homeCtaList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <button type="button" class="btn-cms-add" id="btnAddHomeCta">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <span>Tambah Tombol CTA</span>
+            </button>
+          </section>
+
+          <!-- Card 3: List Metrik & Stats -->
+          <section class="cms-form-card" aria-labelledby="card-hero-stats-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-hero-stats-title">
+                <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+                <span>Kartu Metrik &amp; Statistik Hero</span>
+              </h3>
+              <span class="cms-card-badge">List Data</span>
+            </div>
+
+            <div class="cms-list-container" id="homeStatsList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <button type="button" class="btn-cms-add" id="btnAddHomeStat">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <span>Tambah Kartu Statistik</span>
+            </button>
+          </section>
         </div>
 
+        <!-- PANEL ABOUT ME -->
         <div class="cms-section-panel" id="panel-about">
-          <div class="cms-placeholder">
-            <i class="fa-solid fa-user" aria-hidden="true"></i>
-            <h3>Section: About</h3>
-            <p>Editor konten untuk section About akan ditambahkan di sini.</p>
-          </div>
+          <header class="cms-panel-header">
+            <div class="cms-panel-header-info">
+              <h2 class="cms-panel-heading">Editor Section: About Me</h2>
+              <p class="cms-panel-desc">Kelola judul, sub-judul, narasi perkenalan diri, tautan resume (CV), dan rincian informasi pribadi.</p>
+            </div>
+            <div class="cms-panel-actions">
+              <button type="button" class="btn-cms-reset" id="btnResetAbout" aria-label="Kembalikan data about ke default">
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                <span>Reset Default</span>
+              </button>
+              <button type="button" class="btn-cms-save" id="btnSaveAbout" aria-label="Simpan perubahan section about">
+                <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                <span>Simpan About</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Card 1: Data Tunggal About -->
+          <section class="cms-form-card" aria-labelledby="card-about-single-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-about-single-title">
+                <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                <span>Informasi Umum &amp; Resume</span>
+              </h3>
+              <span class="cms-card-badge">Data Tunggal</span>
+            </div>
+
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label for="about-title" class="cms-label">Judul Section</label>
+                <input type="text" id="about-title" class="cms-input" placeholder="About Me" required>
+              </div>
+              <div class="cms-form-group">
+                <label for="about-subtitle" class="cms-label">Sub-judul Section</label>
+                <input type="text" id="about-subtitle" class="cms-input" placeholder="Mengenal Lebih Dekat">
+              </div>
+            </div>
+
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label for="about-resume-url" class="cms-label">URL / Tautan File Resume (CV)</label>
+                <input type="text" id="about-resume-url" class="cms-input" placeholder="# atau tautan Google Drive / file PDF">
+              </div>
+              <div class="cms-form-group">
+                <label for="about-resume-label" class="cms-label">Label Tombol Resume</label>
+                <input type="text" id="about-resume-label" class="cms-input" placeholder="Download CV">
+              </div>
+            </div>
+
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Foto / Potret Kartu About</label>
+              <div class="cms-image-field">
+                <img id="about-avatar-preview" src="./assets/Profil/Img-Profil.jpeg" alt="Pratinjau Foto About" class="cms-img-preview">
+                <div class="cms-image-controls">
+                  <input type="text" id="about-avatar" class="cms-input" placeholder="./assets/Profil/Img-Profil.jpeg atau URL gambar">
+                  <div class="cms-file-btn-wrapper">
+                    <label for="about-avatar-file" class="btn-file-select">
+                      <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+                      <span>Unggah Foto (Otomatis Kompres)</span>
+                    </label>
+                    <input type="file" id="about-avatar-file" class="cms-file-input" accept="image/*">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Card 2: Paragraf Narasi (List) -->
+          <section class="cms-form-card" aria-labelledby="card-about-para-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-about-para-title">
+                <i class="fa-solid fa-paragraph" aria-hidden="true"></i>
+                <span>Paragraf Narasi Profil</span>
+              </h3>
+              <span class="cms-card-badge">List Teks</span>
+            </div>
+
+            <p class="cms-help-text" style="margin-bottom: var(--space-sm);">
+              Paragraf perkenalan diri yang tampil pada sisi kanan kartu About Me.
+            </p>
+
+            <div class="cms-list-container" id="aboutParagraphsList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <button type="button" class="btn-cms-add" id="btnAddAboutParagraph">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <span>Tambah Paragraf</span>
+            </button>
+          </section>
+
+          <!-- Card 3: Informasi Pribadi (Personal Info - List) -->
+          <section class="cms-form-card" aria-labelledby="card-about-info-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-about-info-title">
+                <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                <span>Rincian Informasi Pribadi (Personal Info)</span>
+              </h3>
+              <span class="cms-card-badge">List Data</span>
+            </div>
+
+            <p class="cms-help-text" style="margin-bottom: var(--space-sm);">
+              Item informasi yang tampil di samping foto profil (contoh: Peran, Lokasi, Status Ketersediaan, Bahasa).
+            </p>
+
+            <div class="cms-list-container" id="aboutPersonalInfoList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <button type="button" class="btn-cms-add" id="btnAddAboutInfo">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <span>Tambah Informasi Pribadi</span>
+            </button>
+          </section>
         </div>
 
         <div class="cms-section-panel" id="panel-skills">
@@ -487,20 +1159,824 @@
           </div>
         </div>
 
+        <!-- PANEL CONTACT -->
         <div class="cms-section-panel" id="panel-contact">
-          <div class="cms-placeholder">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            <h3>Section: Contact</h3>
-            <p>Editor konten untuk Contact akan ditambahkan di sini.</p>
-          </div>
+          <header class="cms-panel-header">
+            <div class="cms-panel-header-info">
+              <h2 class="cms-panel-heading">Editor Section: Contact</h2>
+              <p class="cms-panel-desc">Kelola teks judul, sub-judul, deskripsi pengantar, email utama, lokasi, serta daftar link media sosial &amp; saluran kontak.</p>
+            </div>
+            <div class="cms-panel-actions">
+              <button type="button" class="btn-cms-reset" id="btnResetContact" aria-label="Kembalikan data contact ke default">
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                <span>Reset Default</span>
+              </button>
+              <button type="button" class="btn-cms-save" id="btnSaveContact" aria-label="Simpan perubahan section contact">
+                <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                <span>Simpan Contact</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Card 1: Data Tunggal Contact -->
+          <section class="cms-form-card" aria-labelledby="card-contact-single-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-contact-single-title">
+                <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>
+                <span>Informasi Umum Kontak</span>
+              </h3>
+              <span class="cms-card-badge">Data Tunggal</span>
+            </div>
+
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label for="contact-title" class="cms-label">Judul Section</label>
+                <input type="text" id="contact-title" class="cms-input" placeholder="Contact" required>
+              </div>
+              <div class="cms-form-group">
+                <label for="contact-subtitle" class="cms-label">Sub-judul Section</label>
+                <input type="text" id="contact-subtitle" class="cms-input" placeholder="Mari Terhubung &amp; Berkolaborasi">
+              </div>
+            </div>
+
+            <div class="cms-form-group">
+              <label for="contact-desc" class="cms-label">Teks Pengantar / Deskripsi</label>
+              <textarea id="contact-desc" class="cms-textarea" rows="3" placeholder="Tertarik untuk berkolaborasi dalam proyek web atau ingin berdiskusi..."></textarea>
+            </div>
+
+            <div class="cms-grid-3">
+              <div class="cms-form-group">
+                <label for="contact-email" class="cms-label">Email Utama</label>
+                <input type="email" id="contact-email" class="cms-input" placeholder="rijalimamulhaq28@gmail.com">
+              </div>
+              <div class="cms-form-group">
+                <label for="contact-location" class="cms-label">Lokasi</label>
+                <input type="text" id="contact-location" class="cms-input" placeholder="Indonesia">
+              </div>
+              <div class="cms-form-group">
+                <label for="contact-availability" class="cms-label">Ketersediaan Kerja</label>
+                <input type="text" id="contact-availability" class="cms-input" placeholder="Terbuka untuk proyek baru &amp; peluang karier">
+              </div>
+            </div>
+          </section>
+
+          <!-- Card 2: List Link Kontak -->
+          <section class="cms-form-card" aria-labelledby="card-contact-items-title">
+            <div class="cms-card-header">
+              <h3 class="cms-card-title" id="card-contact-items-title">
+                <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+                <span>Daftar Link Kontak &amp; Media Sosial</span>
+              </h3>
+              <span class="cms-card-badge">List Link</span>
+            </div>
+
+            <p class="cms-help-text" style="margin-bottom: var(--space-sm);">
+              Daftar kartu tautan yang tampil pada grid kontak portfolio (contoh: Email, LinkedIn, GitHub, WhatsApp, Instagram).
+            </p>
+
+            <div class="cms-list-container" id="contactItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <button type="button" class="btn-cms-add" id="btnAddContactItem">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              <span>Tambah Link Kontak</span>
+            </button>
+          </section>
         </div>
 
       </main>
     </div>
   </div>
 
-  <script>
-    // --- Logout ---
+  <!-- Toast Notification Container -->
+  <div class="cms-toast-container" id="cmsToastContainer" aria-live="polite"></div>
+
+  <script type="module">
+    import { getData, saveData, resetSection } from './js/storage.js';
+
+    // --- Helper Sanitasi HTML ---
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // --- Toast Notification System ---
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('cmsToastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `cms-toast is-${type}`;
+      toast.innerHTML = `
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'} toast-icon" aria-hidden="true"></i>
+        <span>${escapeHtml(message)}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        setTimeout(() => toast.remove(), 250);
+      }, 3500);
+    }
+
+    // --- Kompresi Gambar Berbasis Canvas untuk Menghemat Batas localStorage (5MB) ---
+    function compressImageFile(file, maxWidth = 640, maxHeight = 640, quality = 0.82) {
+      return new Promise((resolve, reject) => {
+        if (!file || !file.type.startsWith('image/')) {
+          return reject(new Error('File yang dipilih bukan gambar yang valid.'));
+        }
+
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Gagal membaca file gambar.'));
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('Gagal memuat gambar untuk proses kompresi.'));
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth || height > maxHeight) {
+              if (width / height > maxWidth / maxHeight) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+              } else {
+                width = Math.round((width * maxHeight) / height);
+                height = maxHeight;
+              }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            const base64Url = canvas.toDataURL('image/jpeg', quality);
+            resolve(base64Url);
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // =========================================================================
+    // 1. SECTION: HOME (HERO)
+    // =========================================================================
+    let homeCtas = [];
+    let homeStats = [];
+
+    function renderHomeCtaList() {
+      const list = document.getElementById('homeCtaList');
+      if (!list) return;
+
+      if (homeCtas.length === 0) {
+        list.innerHTML = '<p class="cms-help-text">Belum ada tombol aksi CTA. Klik tombol di bawah untuk menambahkan.</p>';
+        return;
+      }
+
+      list.innerHTML = homeCtas.map((item, index) => `
+        <div class="cms-item-card" data-index="${index}">
+          <div class="cms-item-top">
+            <span class="cms-item-badge">
+              <i class="fa-solid fa-arrow-pointer" aria-hidden="true"></i> Tombol #${index + 1}
+            </span>
+            <button type="button" class="btn-remove-item btn-remove-home-cta" data-index="${index}" aria-label="Hapus tombol CTA ${index + 1}">
+              <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+              <span>Hapus</span>
+            </button>
+          </div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label class="cms-label">Label Tombol</label>
+              <input type="text" class="cms-input cta-label" value="${escapeHtml(item.label || '')}" placeholder="Contoh: Lihat Proyek">
+            </div>
+            <div class="cms-form-group">
+              <label class="cms-label">Target URL / Hash</label>
+              <input type="text" class="cms-input cta-url" value="${escapeHtml(item.url || '')}" placeholder="Contoh: #projects">
+            </div>
+          </div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Varian Tampilan</label>
+              <select class="cms-select cta-variant">
+                <option value="primary" ${item.variant === 'primary' ? 'selected' : ''}>Primary (Aksen Hijau)</option>
+                <option value="outline" ${item.variant === 'outline' ? 'selected' : ''}>Outline (Garis Tepi)</option>
+              </select>
+            </div>
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Kelas Ikon (FontAwesome)</label>
+              <input type="text" class="cms-input cta-icon" value="${escapeHtml(item.icon || '')}" placeholder="Contoh: fa-solid fa-arrow-down">
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.btn-remove-home-cta').forEach(btn => {
+        btn.addEventListener('click', () => {
+          collectHomeCtaData();
+          const idx = parseInt(btn.dataset.index, 10);
+          homeCtas.splice(idx, 1);
+          renderHomeCtaList();
+        });
+      });
+    }
+
+    function collectHomeCtaData() {
+      const cards = document.querySelectorAll('#homeCtaList .cms-item-card');
+      const updated = [];
+      cards.forEach((card, idx) => {
+        const label = card.querySelector('.cta-label')?.value.trim() || '';
+        const url = card.querySelector('.cta-url')?.value.trim() || '#';
+        const variant = card.querySelector('.cta-variant')?.value || 'primary';
+        const icon = card.querySelector('.cta-icon')?.value.trim() || '';
+        const oldId = homeCtas[idx]?.id || `home-cta-${idx + 1}`;
+        updated.push({ id: oldId, label, url, variant, icon });
+      });
+      homeCtas = updated;
+      return updated;
+    }
+
+    function renderHomeStatsList() {
+      const list = document.getElementById('homeStatsList');
+      if (!list) return;
+
+      if (homeStats.length === 0) {
+        list.innerHTML = '<p class="cms-help-text">Belum ada statistik ditambahkan. Klik tombol di bawah untuk menambahkan.</p>';
+        return;
+      }
+
+      list.innerHTML = homeStats.map((item, index) => `
+        <div class="cms-item-card" data-index="${index}">
+          <div class="cms-item-top">
+            <span class="cms-item-badge">
+              <i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Metrik #${index + 1}
+            </span>
+            <button type="button" class="btn-remove-item btn-remove-home-stat" data-index="${index}" aria-label="Hapus statistik ${index + 1}">
+              <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+              <span>Hapus</span>
+            </button>
+          </div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label class="cms-label">Nilai Metrik (Value)</label>
+              <input type="text" class="cms-input stat-value" value="${escapeHtml(item.value ?? '')}" placeholder="Contoh: 15">
+            </div>
+            <div class="cms-form-group">
+              <label class="cms-label">Simbol Suffix (Satuan)</label>
+              <input type="text" class="cms-input stat-suffix" value="${escapeHtml(item.suffix || '')}" placeholder="Contoh: +, %, + Tahun">
+            </div>
+          </div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Label Keterangan</label>
+              <input type="text" class="cms-input stat-label" value="${escapeHtml(item.label || '')}" placeholder="Contoh: Proyek Selesai">
+            </div>
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Kelas Ikon (FontAwesome)</label>
+              <input type="text" class="cms-input stat-icon" value="${escapeHtml(item.icon || '')}" placeholder="Contoh: fa-solid fa-laptop-code">
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.btn-remove-home-stat').forEach(btn => {
+        btn.addEventListener('click', () => {
+          collectHomeStatsData();
+          const idx = parseInt(btn.dataset.index, 10);
+          homeStats.splice(idx, 1);
+          renderHomeStatsList();
+        });
+      });
+    }
+
+    function collectHomeStatsData() {
+      const cards = document.querySelectorAll('#homeStatsList .cms-item-card');
+      const updated = [];
+      cards.forEach((card, idx) => {
+        const rawVal = card.querySelector('.stat-value')?.value.trim() || '';
+        const numVal = isNaN(Number(rawVal)) ? rawVal : Number(rawVal);
+        const suffix = card.querySelector('.stat-suffix')?.value.trim() || '';
+        const label = card.querySelector('.stat-label')?.value.trim() || '';
+        const icon = card.querySelector('.stat-icon')?.value.trim() || 'fa-solid fa-chart-simple';
+        const oldId = homeStats[idx]?.id || `home-stat-${idx + 1}`;
+        updated.push({ id: oldId, value: numVal, suffix, label, icon });
+      });
+      homeStats = updated;
+      return updated;
+    }
+
+    async function loadHomeForm() {
+      const data = await getData('home') || {};
+      document.getElementById('home-name').value = data.name || '';
+      document.getElementById('home-nickname').value = data.nickname || '';
+      document.getElementById('home-badge').value = data.badge || '';
+      document.getElementById('home-bio').value = data.bio || '';
+
+      const roles = Array.isArray(data.typewriterRoles) ? data.typewriterRoles.join(', ') : '';
+      document.getElementById('home-typewriter').value = roles;
+
+      const avatar = data.avatar || './assets/Profil/Img-Profil.jpeg';
+      document.getElementById('home-avatar').value = avatar;
+      document.getElementById('home-avatar-preview').src = avatar;
+
+      homeCtas = Array.isArray(data.ctaButtons) ? JSON.parse(JSON.stringify(data.ctaButtons)) : [];
+      renderHomeCtaList();
+
+      homeStats = Array.isArray(data.stats) ? JSON.parse(JSON.stringify(data.stats)) : [];
+      renderHomeStatsList();
+    }
+
+    async function saveHomeData() {
+      const name = document.getElementById('home-name').value.trim();
+      if (!name) {
+        showToast('Nama Lengkap tidak boleh kosong.', 'error');
+        document.getElementById('home-name').focus();
+        return;
+      }
+
+      const nickname = document.getElementById('home-nickname').value.trim();
+      const badge = document.getElementById('home-badge').value.trim();
+      const bio = document.getElementById('home-bio').value.trim();
+      const avatar = document.getElementById('home-avatar').value.trim() || './assets/Profil/Img-Profil.jpeg';
+
+      const rawRoles = document.getElementById('home-typewriter').value;
+      const typewriterRoles = rawRoles
+        .split(/[,\n]+/)
+        .map(r => r.trim())
+        .filter(r => r.length > 0);
+
+      const ctaButtons = collectHomeCtaData();
+      const stats = collectHomeStatsData();
+
+      const homePayload = {
+        title: 'Home',
+        badge,
+        name,
+        nickname,
+        typewriterRoles,
+        bio,
+        avatar,
+        ctaButtons,
+        stats
+      };
+
+      try {
+        saveData('home', homePayload);
+        showToast('Perubahan Section Home berhasil disimpan!');
+      } catch (err) {
+        console.error(err);
+        showToast('Gagal menyimpan data Home: ' + err.message, 'error');
+      }
+    }
+
+    // Inisialisasi event listener Home
+    document.getElementById('home-avatar').addEventListener('input', (e) => {
+      document.getElementById('home-avatar-preview').src = e.target.value || './assets/Profil/Img-Profil.jpeg';
+    });
+
+    document.getElementById('home-avatar-file').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const compressedBase64 = await compressImageFile(file, 640, 640);
+        document.getElementById('home-avatar').value = compressedBase64;
+        document.getElementById('home-avatar-preview').src = compressedBase64;
+        showToast('Foto profil berhasil dimuat dan dikompres.');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    });
+
+    document.getElementById('btnAddHomeCta').addEventListener('click', () => {
+      collectHomeCtaData();
+      homeCtas.push({
+        id: `home-cta-${Date.now()}`,
+        label: 'Tombol Baru',
+        url: '#',
+        variant: 'primary',
+        icon: 'fa-solid fa-arrow-down'
+      });
+      renderHomeCtaList();
+    });
+
+    document.getElementById('btnAddHomeStat').addEventListener('click', () => {
+      collectHomeStatsData();
+      homeStats.push({
+        id: `home-stat-${Date.now()}`,
+        value: 1,
+        suffix: '+',
+        label: 'Statistik Baru',
+        icon: 'fa-solid fa-award'
+      });
+      renderHomeStatsList();
+    });
+
+    document.getElementById('btnSaveHome').addEventListener('click', saveHomeData);
+
+    document.getElementById('btnResetHome').addEventListener('click', async () => {
+      if (confirm('Kembalikan data Section Home ke data bawaan (seed)? Perubahan lokal yang belum disimpan di seed akan hilang.')) {
+        resetSection('home');
+        await loadHomeForm();
+        showToast('Section Home berhasil dikembalikan ke default.');
+      }
+    });
+
+    // =========================================================================
+    // 2. SECTION: ABOUT ME
+    // =========================================================================
+    let aboutParagraphs = [];
+    let aboutPersonalInfo = [];
+
+    function renderAboutParagraphsList() {
+      const list = document.getElementById('aboutParagraphsList');
+      if (!list) return;
+
+      if (aboutParagraphs.length === 0) {
+        list.innerHTML = '<p class="cms-help-text">Belum ada paragraf narasi. Klik tombol di bawah untuk menambahkan.</p>';
+        return;
+      }
+
+      list.innerHTML = aboutParagraphs.map((item, index) => {
+        const textVal = typeof item === 'string' ? item : (item.text || '');
+        return `
+          <div class="cms-item-card" data-index="${index}">
+            <div class="cms-item-top">
+              <span class="cms-item-badge">
+                <i class="fa-solid fa-paragraph" aria-hidden="true"></i> Paragraf #${index + 1}
+              </span>
+              <button type="button" class="btn-remove-item btn-remove-about-para" data-index="${index}" aria-label="Hapus paragraf ${index + 1}">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                <span>Hapus</span>
+              </button>
+            </div>
+            <div class="cms-form-group no-mb">
+              <textarea class="cms-textarea about-para-text" rows="3" placeholder="Tuliskan narasi tentang diri Anda...">${escapeHtml(textVal)}</textarea>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.querySelectorAll('.btn-remove-about-para').forEach(btn => {
+        btn.addEventListener('click', () => {
+          collectAboutParagraphsData();
+          const idx = parseInt(btn.dataset.index, 10);
+          aboutParagraphs.splice(idx, 1);
+          renderAboutParagraphsList();
+        });
+      });
+    }
+
+    function collectAboutParagraphsData() {
+      const cards = document.querySelectorAll('#aboutParagraphsList .cms-item-card');
+      const updated = [];
+      cards.forEach((card, idx) => {
+        const text = card.querySelector('.about-para-text')?.value.trim() || '';
+        const oldId = aboutParagraphs[idx]?.id || `about-para-${idx + 1}`;
+        updated.push({ id: oldId, text });
+      });
+      aboutParagraphs = updated;
+      return updated;
+    }
+
+    function renderAboutPersonalInfoList() {
+      const list = document.getElementById('aboutPersonalInfoList');
+      if (!list) return;
+
+      if (aboutPersonalInfo.length === 0) {
+        list.innerHTML = '<p class="cms-help-text">Belum ada item informasi pribadi. Klik tombol di bawah untuk menambahkan.</p>';
+        return;
+      }
+
+      list.innerHTML = aboutPersonalInfo.map((item, index) => `
+        <div class="cms-item-card" data-index="${index}">
+          <div class="cms-item-top">
+            <span class="cms-item-badge">
+              <i class="fa-solid fa-user-tag" aria-hidden="true"></i> Info #${index + 1}
+            </span>
+            <button type="button" class="btn-remove-item btn-remove-about-info" data-index="${index}" aria-label="Hapus info ${index + 1}">
+              <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+              <span>Hapus</span>
+            </button>
+          </div>
+          <div class="cms-grid-3">
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Label (Nama Field)</label>
+              <input type="text" class="cms-input info-label" value="${escapeHtml(item.label || '')}" placeholder="Contoh: Peran, Lokasi">
+            </div>
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Nilai (Value)</label>
+              <input type="text" class="cms-input info-value" value="${escapeHtml(item.value || '')}" placeholder="Contoh: Web Developer">
+            </div>
+            <div class="cms-form-group no-mb">
+              <label class="cms-label">Ikon (FontAwesome)</label>
+              <input type="text" class="cms-input info-icon" value="${escapeHtml(item.icon || '')}" placeholder="Contoh: fa-solid fa-briefcase">
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.btn-remove-about-info').forEach(btn => {
+        btn.addEventListener('click', () => {
+          collectAboutPersonalInfoData();
+          const idx = parseInt(btn.dataset.index, 10);
+          aboutPersonalInfo.splice(idx, 1);
+          renderAboutPersonalInfoList();
+        });
+      });
+    }
+
+    function collectAboutPersonalInfoData() {
+      const cards = document.querySelectorAll('#aboutPersonalInfoList .cms-item-card');
+      const updated = [];
+      cards.forEach((card, idx) => {
+        const label = card.querySelector('.info-label')?.value.trim() || '';
+        const value = card.querySelector('.info-value')?.value.trim() || '';
+        const icon = card.querySelector('.info-icon')?.value.trim() || 'fa-solid fa-circle-info';
+        const oldId = aboutPersonalInfo[idx]?.id || `about-info-${idx + 1}`;
+        updated.push({ id: oldId, label, value, icon });
+      });
+      aboutPersonalInfo = updated;
+      return updated;
+    }
+
+    async function loadAboutForm() {
+      const data = await getData('about') || {};
+      document.getElementById('about-title').value = data.title || 'About Me';
+      document.getElementById('about-subtitle').value = data.subtitle || 'Mengenal Lebih Dekat';
+      document.getElementById('about-resume-url').value = data.resumeUrl || '#';
+      document.getElementById('about-resume-label').value = data.resumeButtonLabel || 'Download CV';
+
+      const avatar = data.avatar || './assets/Profil/Img-Profil.jpeg';
+      document.getElementById('about-avatar').value = avatar;
+      document.getElementById('about-avatar-preview').src = avatar;
+
+      aboutParagraphs = Array.isArray(data.paragraphs) ? JSON.parse(JSON.stringify(data.paragraphs)) : [];
+      renderAboutParagraphsList();
+
+      aboutPersonalInfo = Array.isArray(data.personalInfo) ? JSON.parse(JSON.stringify(data.personalInfo)) : [];
+      renderAboutPersonalInfoList();
+    }
+
+    async function saveAboutData() {
+      const title = document.getElementById('about-title').value.trim() || 'About Me';
+      const subtitle = document.getElementById('about-subtitle').value.trim();
+      const resumeUrl = document.getElementById('about-resume-url').value.trim() || '#';
+      const resumeButtonLabel = document.getElementById('about-resume-label').value.trim() || 'Download CV';
+      const avatar = document.getElementById('about-avatar').value.trim() || './assets/Profil/Img-Profil.jpeg';
+
+      const paragraphs = collectAboutParagraphsData();
+      const personalInfo = collectAboutPersonalInfoData();
+
+      const aboutPayload = {
+        title,
+        subtitle,
+        avatar,
+        paragraphs,
+        personalInfo,
+        resumeUrl,
+        resumeButtonLabel
+      };
+
+      try {
+        saveData('about', aboutPayload);
+        showToast('Perubahan Section About Me berhasil disimpan!');
+      } catch (err) {
+        console.error(err);
+        showToast('Gagal menyimpan data About: ' + err.message, 'error');
+      }
+    }
+
+    document.getElementById('about-avatar').addEventListener('input', (e) => {
+      document.getElementById('about-avatar-preview').src = e.target.value || './assets/Profil/Img-Profil.jpeg';
+    });
+
+    document.getElementById('about-avatar-file').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const compressedBase64 = await compressImageFile(file, 640, 640);
+        document.getElementById('about-avatar').value = compressedBase64;
+        document.getElementById('about-avatar-preview').src = compressedBase64;
+        showToast('Foto About berhasil dimuat dan dikompres.');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    });
+
+    document.getElementById('btnAddAboutParagraph').addEventListener('click', () => {
+      collectAboutParagraphsData();
+      aboutParagraphs.push({
+        id: `about-para-${Date.now()}`,
+        text: ''
+      });
+      renderAboutParagraphsList();
+    });
+
+    document.getElementById('btnAddAboutInfo').addEventListener('click', () => {
+      collectAboutPersonalInfoData();
+      aboutPersonalInfo.push({
+        id: `about-info-${Date.now()}`,
+        label: 'Info Baru',
+        value: 'Deskripsi',
+        icon: 'fa-solid fa-circle-info'
+      });
+      renderAboutPersonalInfoList();
+    });
+
+    document.getElementById('btnSaveAbout').addEventListener('click', saveAboutData);
+
+    document.getElementById('btnResetAbout').addEventListener('click', async () => {
+      if (confirm('Kembalikan data Section About Me ke data bawaan (seed)? Perubahan lokal yang belum disimpan di seed akan hilang.')) {
+        resetSection('about');
+        await loadAboutForm();
+        showToast('Section About Me berhasil dikembalikan ke default.');
+      }
+    });
+
+    // =========================================================================
+    // 3. SECTION: CONTACT
+    // =========================================================================
+    let contactItems = [];
+
+    function renderContactItemsList() {
+      const list = document.getElementById('contactItemsList');
+      if (!list) return;
+
+      if (contactItems.length === 0) {
+        list.innerHTML = '<p class="cms-help-text">Belum ada link kontak ditambahkan. Klik tombol di bawah untuk menambahkan.</p>';
+        return;
+      }
+
+      list.innerHTML = contactItems.map((item, index) => {
+        const itemColor = item.color || '#10b981';
+        return `
+          <div class="cms-item-card" data-index="${index}">
+            <div class="cms-item-top">
+              <span class="cms-item-badge">
+                <i class="${escapeHtml(item.iconClass || 'fa-solid fa-link')}" aria-hidden="true"></i>
+                <span>${escapeHtml(item.platform || `Link #${index + 1}`)}</span>
+              </span>
+              <button type="button" class="btn-remove-item btn-remove-contact-item" data-index="${index}" aria-label="Hapus link kontak ${index + 1}">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                <span>Hapus</span>
+              </button>
+            </div>
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label class="cms-label">Platform / Nama Saluran</label>
+                <input type="text" class="cms-input contact-platform" value="${escapeHtml(item.platform || '')}" placeholder="Contoh: LinkedIn, GitHub, Email">
+              </div>
+              <div class="cms-form-group">
+                <label class="cms-label">Teks Label / Tampilan Tautan</label>
+                <input type="text" class="cms-input contact-label" value="${escapeHtml(item.label || '')}" placeholder="Contoh: linkedin.com/in/rijall">
+              </div>
+            </div>
+            <div class="cms-grid-2">
+              <div class="cms-form-group">
+                <label class="cms-label">Target URL Kontak</label>
+                <input type="text" class="cms-input contact-url" value="${escapeHtml(item.url || '')}" placeholder="Contoh: https://linkedin.com/in/... atau mailto:...">
+              </div>
+              <div class="cms-form-group">
+                <label class="cms-label">Kelas Ikon (FontAwesome)</label>
+                <input type="text" class="cms-input contact-icon" value="${escapeHtml(item.iconClass || '')}" placeholder="Contoh: fa-brands fa-linkedin-in">
+              </div>
+            </div>
+            <div class="cms-grid-2">
+              <div class="cms-form-group no-mb">
+                <label class="cms-label">Warna Aksen Ikon / Brand</label>
+                <div style="display: flex; gap: var(--space-2xs); align-items: center;">
+                  <input type="color" class="contact-color-picker" value="${escapeHtml(itemColor)}" style="width: 44px; height: 44px; padding: 2px; border-radius: var(--radius-xs); border: 1px solid var(--border-subtle); background: var(--bg-surface); cursor: pointer;">
+                  <input type="text" class="cms-input contact-color-text" value="${escapeHtml(itemColor)}" placeholder="#10b981" style="flex: 1;">
+                </div>
+              </div>
+              <div class="cms-form-group no-mb" style="justify-content: flex-end;">
+                <label class="cms-checkbox-label">
+                  <input type="checkbox" class="cms-checkbox contact-primary" ${item.isPrimary ? 'checked' : ''}>
+                  <span>Tandai sebagai Kontak Utama (Prioritas)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.querySelectorAll('.cms-item-card').forEach((card) => {
+        const picker = card.querySelector('.contact-color-picker');
+        const text = card.querySelector('.contact-color-text');
+        if (picker && text) {
+          picker.addEventListener('input', (e) => { text.value = e.target.value; });
+          text.addEventListener('input', (e) => {
+            if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+              picker.value = e.target.value;
+            }
+          });
+        }
+      });
+
+      list.querySelectorAll('.btn-remove-contact-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          collectContactItemsData();
+          const idx = parseInt(btn.dataset.index, 10);
+          contactItems.splice(idx, 1);
+          renderContactItemsList();
+        });
+      });
+    }
+
+    function collectContactItemsData() {
+      const cards = document.querySelectorAll('#contactItemsList .cms-item-card');
+      const updated = [];
+      cards.forEach((card, idx) => {
+        const platform = card.querySelector('.contact-platform')?.value.trim() || 'Link';
+        const label = card.querySelector('.contact-label')?.value.trim() || '';
+        const url = card.querySelector('.contact-url')?.value.trim() || '#';
+        const iconClass = card.querySelector('.contact-icon')?.value.trim() || 'fa-solid fa-link';
+        const color = card.querySelector('.contact-color-text')?.value.trim() || '#10b981';
+        const isPrimary = card.querySelector('.contact-primary')?.checked || false;
+        const oldId = contactItems[idx]?.id || `contact-${idx + 1}`;
+        updated.push({ id: oldId, platform, label, url, iconClass, color, isPrimary });
+      });
+      contactItems = updated;
+      return updated;
+    }
+
+    async function loadContactForm() {
+      const data = await getData('contact') || {};
+      document.getElementById('contact-title').value = data.title || 'Contact';
+      document.getElementById('contact-subtitle').value = data.subtitle || 'Mari Terhubung & Berkolaborasi';
+      document.getElementById('contact-desc').value = data.description || '';
+      document.getElementById('contact-email').value = data.email || '';
+      document.getElementById('contact-location').value = data.location || 'Indonesia';
+      document.getElementById('contact-availability').value = data.availability || '';
+
+      contactItems = Array.isArray(data.items) ? JSON.parse(JSON.stringify(data.items)) : [];
+      renderContactItemsList();
+    }
+
+    async function saveContactData() {
+      const title = document.getElementById('contact-title').value.trim() || 'Contact';
+      const subtitle = document.getElementById('contact-subtitle').value.trim();
+      const description = document.getElementById('contact-desc').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const location = document.getElementById('contact-location').value.trim();
+      const availability = document.getElementById('contact-availability').value.trim();
+
+      const items = collectContactItemsData();
+
+      const contactPayload = {
+        title,
+        subtitle,
+        description,
+        email,
+        location,
+        availability,
+        items
+      };
+
+      try {
+        saveData('contact', contactPayload);
+        showToast('Perubahan Section Contact berhasil disimpan!');
+      } catch (err) {
+        console.error(err);
+        showToast('Gagal menyimpan data Contact: ' + err.message, 'error');
+      }
+    }
+
+    document.getElementById('btnAddContactItem').addEventListener('click', () => {
+      collectContactItemsData();
+      contactItems.push({
+        id: `contact-${Date.now()}`,
+        platform: 'Saluran Baru',
+        label: 'username / akun',
+        url: 'https://',
+        iconClass: 'fa-solid fa-link',
+        color: '#10b981',
+        isPrimary: false
+      });
+      renderContactItemsList();
+    });
+
+    document.getElementById('btnSaveContact').addEventListener('click', saveContactData);
+
+    document.getElementById('btnResetContact').addEventListener('click', async () => {
+      if (confirm('Kembalikan data Section Contact ke data bawaan (seed)? Perubahan lokal yang belum disimpan di seed akan hilang.')) {
+        resetSection('contact');
+        await loadContactForm();
+        showToast('Section Contact berhasil dikembalikan ke default.');
+      }
+    });
+
+    // =========================================================================
+    // 4. SHELL CONTROLLER (Sidebar, Navigation, Logout & Inisialisasi)
+    // =========================================================================
     function doLogout() {
       sessionStorage.removeItem('portfolio_cms_auth');
       window.location.replace('./login.html');
@@ -508,18 +1984,17 @@
     document.getElementById('logout-btn-sidebar').addEventListener('click', doLogout);
     document.getElementById('logout-btn-topbar').addEventListener('click', doLogout);
 
-    // --- Section navigation ---
-    const navItems  = document.querySelectorAll('.cms-nav-item[data-section]');
-    const panels    = document.querySelectorAll('.cms-section-panel');
+    const navItems = document.querySelectorAll('.cms-nav-item[data-section]');
+    const panels = document.querySelectorAll('.cms-section-panel');
     const pageTitle = document.getElementById('currentSectionTitle');
 
     const sectionLabels = {
-      hero:       'Hero',
-      about:      'About',
-      skills:     'Skills & Tools',
-      projects:   'Projects',
+      hero: 'Hero',
+      about: 'About',
+      skills: 'Skills & Tools',
+      projects: 'Projects',
       experience: 'Experience',
-      contact:    'Contact',
+      contact: 'Contact',
     };
 
     function switchSection(target) {
@@ -541,9 +2016,8 @@
       });
     });
 
-    // --- Mobile sidebar toggle ---
-    const sidebar   = document.getElementById('cmsSidebar');
-    const overlay   = document.getElementById('sidebarOverlay');
+    const sidebar = document.getElementById('cmsSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
     const toggleBtn = document.getElementById('sidebarToggle');
 
     function openSidebar() {
@@ -569,6 +2043,21 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && sidebar.classList.contains('is-open')) closeSidebar();
     });
+
+    // Inisialisasi muat seluruh data form saat DOM siap
+    async function initCMS() {
+      await Promise.all([
+        loadHomeForm(),
+        loadAboutForm(),
+        loadContactForm()
+      ]);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCMS);
+    } else {
+      initCMS();
+    }
   </script>
 </body>
 
