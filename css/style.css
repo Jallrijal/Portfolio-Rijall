@@ -962,6 +962,12 @@ ul, ol {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.tool-card:hover .tool-icon-box {
+  transform: translateY(-4px) scale(1.12);
+  color: var(--accent-primary);
 }
 
 .tool-icon-github {
@@ -1034,15 +1040,30 @@ ul, ol {
   overflow: hidden;
 }
 
-.project-thumbnail {
+/* Overlay gelap muncul saat hover untuk memberi konteks visual */
+.project-thumbnail-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3, 7, 18, 0.55) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.project-card:hover .project-thumbnail-wrapper::after {
+  opacity: 1;
+}
+
+.project-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project-card:hover .project-thumbnail {
-  transform: scale(1.04);
+.project-card:hover .project-img {
+  transform: scale(1.05);
 }
 
 .project-category-tag {
@@ -1485,15 +1506,37 @@ ul, ol {
   }
 }
 
-/* Prefers Reduced Motion Accessibility */
+/* Prefers Reduced Motion Accessibility
+   Hanya matikan animasi dan transisi non-esensial.
+   Transisi tema (warna) tetap dibiarkan karena user menekan tombol secara sadar. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
+  /* Matikan keyframe animations */
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  }
+
+  /* Matikan transform/opacity transitions (efek hover gerak) tapi biarkan color/bg transitions */
+  .btn,
+  .cms-nav-btn,
+  .tool-card,
+  .tool-icon-box,
+  .project-card,
+  .project-img,
+  .project-thumbnail-wrapper::after,
+  .profile-card,
+  .profile-avatar-img,
+  .contact-item-card,
+  .contact-arrow,
+  .timeline-card,
+  .stat-card,
+  .nav-link,
+  .nav-menu-wrapper {
+    transition-property: color, background-color, border-color;
+    transition-duration: var(--transition-theme);
   }
 }

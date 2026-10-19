@@ -6,8 +6,12 @@
  * - Scroll spy & smooth scroll
  * - Animasi teks peran rotasi (Typewriter)
  * - Filter kategori Tools
- * - Animasi masuk GSAP & ScrollTrigger
+ * - Animasi masuk GSAP & ScrollTrigger (dengan ScrollTrigger)
  */
+
+// Flag: hero hanya dianimasikan sekali saat halaman pertama kali dimuat,
+// bukan setiap kali re-render dipicu oleh perubahan data.
+let heroHasAnimated = false;
 
 import { renderApp } from './render.js';
 
@@ -245,74 +249,151 @@ function initToolsFilter() {
 }
 
 /* ==========================================================================
-   6. GSAP Scroll Trigger Entrance Animations
+   6. GSAP Animations: Hero Entrance + Scroll Reveal per Section
    ========================================================================== */
-function initGsapAnimations() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    return;
-  }
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
+/**
+ * Helper: buat ScrollTrigger reveal untuk sekumpulan elemen dengan stagger.
+ * @param {string|Element[]} targets - Selector atau array elemen.
+ * @param {object} triggerEl - Elemen pemicu ScrollTrigger.
+ * @param {object} fromVars - Properti awal animasi (from).
+ * @param {object} opts - Opsi tambahan (duration, stagger, ease, delay).
+ */
+function revealOnScroll(targets, triggerEl, fromVars = {}, opts = {}) {
+  const els = typeof targets === 'string' ? gsap.utils.toArray(targets) : targets;
+  if (!els || els.length === 0) return;
+
+  const defaults = {
+    duration: 0.6,
+    stagger: 0.08,
+    ease: 'power2.out',
+    delay: 0
+  };
+  const { duration, stagger, ease, delay } = { ...defaults, ...opts };
+
+  gsap.from(els, {
+    scrollTrigger: {
+      trigger: triggerEl || els[0],
+      start: 'top 88%',
+      toggleActions: 'play none none none',
+      once: true
+    },
+    ...fromVars,
+    duration,
+    stagger,
+    ease,
+    delay,
+    clearProps: 'opacity,transform'
+  });
+}
+
+function initGsapAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Bersihkan trigger lama sebelum membuat baru (agar tidak duplikat saat re-render)
-  const allTriggers = ScrollTrigger.getAll();
-  allTriggers.forEach(t => t.kill());
+  // Matikan semua trigger lama sebelum membuat yang baru.
+  // Ini adalah kunci kebenaran saat konten di-render ulang secara dinamis.
+  ScrollTrigger.getAll().forEach(t => t.kill());
+  // Juga bersihkan animasi yang mungkin tertahan di elemen lama
+  gsap.globalTimeline.clear();
 
-  // Animasi Hero
-  if (document.querySelector('.hero-content > *')) {
-    gsap.from('.hero-content > *', {
-      y: 20,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power3.out'
-    });
+  /* ------------------------------------------------------------------
+     HERO ENTRANCE — hanya dijalankan sekali saat pertama kali render.
+     Saat re-render (mis. dari CMS), elemen sudah terlihat: skip.
+  ------------------------------------------------------------------ */
+  if (!heroHasAnimated) {
+    heroHasAnimated = true;
+
+    const heroChildren = gsap.utils.toArray('.hero-content > *');
+    if (heroChildren.length > 0) {
+      gsap.from(heroChildren, {
+        y: 28,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: 'power3.out',
+        clearProps: 'opacity,transform'
+      });
+    }
+
+    const heroVisual = document.querySelector('.hero-visual');
+    if (heroVisual) {
+      gsap.from(heroVisual, {
+        x: 30,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: 0.2,
+        clearProps: 'opacity,transform'
+      });
+    }
   }
 
-  if (document.querySelector('.hero-visual')) {
-    gsap.from('.hero-visual', {
-      scale: 0.95,
-      opacity: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-      delay: 0.15
-    });
-  }
-
-  // Animasi reveal section headers saat di-scroll
+  /* ------------------------------------------------------------------
+     SECTION HEADERS — setiap section header muncul saat di-scroll
+  ------------------------------------------------------------------ */
   gsap.utils.toArray('.section-header').forEach((header) => {
-    gsap.from(header, {
-      scrollTrigger: {
-        trigger: header,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      },
-      y: 25,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.out'
-    });
+    revealOnScroll([header], header, { y: 28, opacity: 0 }, { duration: 0.65 });
   });
 
-  // Animasi kartu project bertahap
-  gsap.utils.toArray('.project-card').forEach((card, index) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 90%',
-        toggleActions: 'play none none none'
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.55,
-      delay: (index % 3) * 0.08,
-      ease: 'power2.out'
-    });
-  });
+  /* ------------------------------------------------------------------
+     ABOUT — kartu kiri (info) dan kanan (teks) masuk bergantian
+  ------------------------------------------------------------------ */
+  const aboutLeft = document.querySelector('.about-card-left');
+  const aboutRight = document.querySelector('.about-card-right');
+  if (aboutLeft) {
+    revealOnScroll([aboutLeft], aboutLeft, { x: -30, opacity: 0 }, { duration: 0.7 });
+  }
+  if (aboutRight) {
+    revealOnScroll([aboutRight], aboutRight, { x: 30, opacity: 0 }, { duration: 0.7, delay: 0.1 });
+  }
+
+  // Personal info items masuk satu per satu
+  const infoItems = gsap.utils.toArray('.personal-info-item');
+  if (infoItems.length > 0) {
+    revealOnScroll(infoItems, aboutLeft || infoItems[0], { x: -16, opacity: 0 }, { stagger: 0.06, delay: 0.25 });
+  }
+
+  /* ------------------------------------------------------------------
+     TOOLS — kartu masuk bertahap dalam baris
+  ------------------------------------------------------------------ */
+  const toolCards = gsap.utils.toArray('.tool-card');
+  if (toolCards.length > 0) {
+    const toolsGrid = document.querySelector('.tools-grid');
+    revealOnScroll(toolCards, toolsGrid || toolCards[0], { y: 24, opacity: 0 }, { stagger: 0.06, duration: 0.5 });
+  }
+
+  /* ------------------------------------------------------------------
+     PROJECTS — kartu masuk bertahap
+  ------------------------------------------------------------------ */
+  const projectCards = gsap.utils.toArray('.project-card');
+  if (projectCards.length > 0) {
+    const projectsGrid = document.querySelector('.projects-grid');
+    revealOnScroll(projectCards, projectsGrid || projectCards[0], { y: 30, opacity: 0 }, { stagger: 0.1, duration: 0.6 });
+  }
+
+  /* ------------------------------------------------------------------
+     EXPERIENCE — timeline items masuk dari bawah dengan stagger
+  ------------------------------------------------------------------ */
+  const timelineItems = gsap.utils.toArray('.timeline-item');
+  if (timelineItems.length > 0) {
+    const timelineContainer = document.querySelector('.timeline-container');
+    revealOnScroll(timelineItems, timelineContainer || timelineItems[0], { y: 24, opacity: 0 }, { stagger: 0.12, duration: 0.55 });
+  }
+
+  /* ------------------------------------------------------------------
+     CONTACT — kartu kontak masuk bertahap
+  ------------------------------------------------------------------ */
+  const contactCards = gsap.utils.toArray('.contact-item-card');
+  if (contactCards.length > 0) {
+    const contactGrid = document.querySelector('.contact-links-grid');
+    revealOnScroll(contactCards, contactGrid || contactCards[0], { y: 20, opacity: 0 }, { stagger: 0.08, duration: 0.5 });
+  }
+
+  // Refresh semua ScrollTrigger setelah elemen baru terpasang
+  ScrollTrigger.refresh();
 }
 
 /* ==========================================================================
