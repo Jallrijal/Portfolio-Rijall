@@ -35,6 +35,7 @@ export function extractArray(data, key = 'items') {
 export function renderHeader() {
   return `
   <header class="site-header" id="site-header">
+    <div class="nav-progress" aria-hidden="true"></div>
     <div class="nav-container">
       <nav class="navbar" aria-label="Navigasi Utama">
         <a href="#home" class="brand-logo" aria-label="Kembali ke Beranda">
@@ -48,37 +49,37 @@ export function renderHeader() {
             <li class="nav-item">
               <a href="#home" class="nav-link active" data-section="home">
                 <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
-                <span>Home</span>
+                <span class="nav-label"><span data-text="Home">Home</span></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#about" class="nav-link" data-section="about">
                 <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
-                <span>About</span>
+                <span class="nav-label"><span data-text="About">About</span></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#tools" class="nav-link" data-section="tools">
                 <i class="fa-solid fa-screwdriver-wrench nav-icon" aria-hidden="true"></i>
-                <span>Tools</span>
+                <span class="nav-label"><span data-text="Tools">Tools</span></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#projects" class="nav-link" data-section="projects">
                 <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
-                <span>Projects</span>
+                <span class="nav-label"><span data-text="Projects">Projects</span></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#experience" class="nav-link" data-section="experience">
                 <i class="fa-solid fa-timeline nav-icon" aria-hidden="true"></i>
-                <span>Experience</span>
+                <span class="nav-label"><span data-text="Experience">Experience</span></span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#contact" class="nav-link" data-section="contact">
                 <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
-                <span>Contact</span>
+                <span class="nav-label"><span data-text="Contact">Contact</span></span>
               </a>
             </li>
           </ul>
@@ -158,25 +159,38 @@ export function renderHome(data) {
       `).join('')}
     </div>` : '';
 
-  const avatarSrc = data.avatar || './assets/Profil/Img-Profil.jpeg';
+  const avatarSrc = data.avatar || 'https://picsum.photos/seed/rijal-portrait/800/1000?grayscale';
+  const stickerA = typewriterRoles[0] ? `<span class="sticker sticker-a">${escapeHtml(typewriterRoles[0])}</span>` : '';
+  const stickerB = typewriterRoles[1] ? `<span class="sticker sticker-b">${escapeHtml(typewriterRoles[1])}</span>` : '';
   const avatarHtml = `
-    <div class="hero-visual">
+    <div class="hero-visual" aria-hidden="false">
       <div class="profile-card">
         <div class="profile-avatar-frame">
-          <img src="${escapeHtml(avatarSrc)}" alt="Foto Profil ${name}" class="profile-avatar-img" width="360" height="360" loading="eager">
+          <img src="${escapeHtml(avatarSrc)}" alt="Foto Profil ${name}" class="profile-avatar-img" width="360" height="360" loading="eager" onerror="this.remove()">
         </div>
-        <div class="profile-card-footer">
-          <div class="profile-status-badge">
-            <i class="fa-solid fa-code" aria-hidden="true"></i>
-            <span>Frontend &amp; Web Specialist</span>
-          </div>
+        <div class="spin-badge" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="spin-circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+            <text><textPath href="#spin-circle" textLength="286">OPEN FOR WORK • OPEN FOR WORK • </textPath></text>
+          </svg>
+          <i class="fa-solid fa-arrow-down spin-badge-core"></i>
         </div>
+        ${stickerA}
+        ${stickerB}
       </div>
+    </div>`;
+
+  const metaHtml = `
+    <div class="hero-meta" aria-hidden="true">
+      <span>Portfolio &copy; ${new Date().getFullYear()}</span>
+      <span class="hero-clock" id="hero-clock">WIB --:--:--</span>
+      <span class="hero-scroll">Scroll <i class="fa-solid fa-arrow-down"></i></span>
     </div>`;
 
   return `
   <section id="home" class="section hero-section" aria-labelledby="hero-name">
     <div class="section-container hero-container">
+      ${metaHtml}
       <div class="hero-content">
         ${badge}
         <h1 class="hero-heading" id="hero-name">
@@ -201,7 +215,7 @@ export function renderAbout(data) {
 
   const title = escapeHtml(data.title || 'About Me');
   const subtitle = escapeHtml(data.subtitle || 'Mengenal Lebih Dekat');
-  const avatarSrc = data.avatar || './assets/Profil/Img-Profil.jpeg';
+  const avatarSrc = data.avatar || 'https://picsum.photos/seed/rijal-portrait/800/1000?grayscale';
 
   const personalInfo = extractArray(data.personalInfo);
   const personalInfoHtml = personalInfo.length > 0 ? `
@@ -251,8 +265,14 @@ export function renderAbout(data) {
 
       <div class="about-grid">
         <div class="about-card-left">
-          <div class="about-avatar-wrapper">
-            <img src="${escapeHtml(avatarSrc)}" alt="Potret ${title}" class="about-avatar-img" loading="lazy">
+          <div class="about-photos">
+            <div class="about-avatar-wrapper">
+              <img src="${escapeHtml(avatarSrc)}" alt="Potret ${title}" class="about-avatar-img" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="about-photo-2" aria-hidden="true">
+              <img src="https://picsum.photos/seed/rijal-desk/600/600?grayscale" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+            <span class="sticker about-sticker">Halo!</span>
           </div>
           ${personalInfoHtml}
         </div>
@@ -360,7 +380,7 @@ export function renderProjects(data) {
     return `
     <article class="project-card ${proj.featured ? 'is-featured' : ''}" ${proj.id ? `id="${escapeHtml(proj.id)}"` : ''}>
       <div class="project-thumbnail-wrapper">
-        <img src="${escapeHtml(proj.image || './assets/Project/Project K-link.png')}" alt="Tangkapan layar proyek ${escapeHtml(proj.title || '')}" class="project-img" loading="lazy">
+        <img src="${escapeHtml(proj.image || 'https://picsum.photos/seed/rijal-project/1400/1000?grayscale')}" alt="Tangkapan layar proyek ${escapeHtml(proj.title || '')}" class="project-img" loading="lazy" onerror="this.remove()">
         ${proj.category ? `<span class="project-category-badge">${escapeHtml(proj.category)}</span>` : ''}
       </div>
       <div class="project-card-body">
@@ -482,6 +502,7 @@ export function renderContact(data) {
       </header>
 
       <div class="contact-card-main">
+        <p class="contact-giant" aria-hidden="true">Mari bikin<br>sesuatu<em>.</em></p>
         ${intro}
         <div class="contact-links-grid" id="contact-links-grid">
           ${contactCardsHtml}
@@ -511,7 +532,7 @@ export function renderFooter(homeData) {
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; ${currentYear} ${brandName} Alam. Seluruh hak cipta dilindungi.</p>
+        <p class="footer-copyright">&copy; ${currentYear} ${brandName}. Seluruh hak cipta dilindungi.</p>
         <div class="footer-links">
           <a href="#home" class="footer-link">Kembali ke Atas</a>
           <span class="footer-divider" aria-hidden="true">&bull;</span>
@@ -521,6 +542,22 @@ export function renderFooter(homeData) {
       </div>
     </div>
   </footer>`;
+}
+
+/**
+ * Marquee berjalan dari nama tools.
+ */
+export function renderMarquee(tools) {
+  const names = extractArray(tools, 'items').map(i => i && i.name).filter(Boolean);
+  if (names.length === 0) return '';
+  const row = (list) => list.map(n => `<span class="marquee-item">${escapeHtml(n)}</span>`).join('');
+  const group = (list) => `<div class="marquee-group">${row(list)}</div>`;
+  const second = ['Clean code', 'Responsive', 'Accessible', 'Fast', 'Detail', 'Open for work'];
+  return `
+  <div class="bands" aria-hidden="true">
+    <div class="marquee band-a"><div class="marquee-track">${group(names)}${group(names)}</div></div>
+    <div class="marquee band-b"><div class="marquee-track">${group(second)}${group(second)}</div></div>
+  </div>`;
 }
 
 /**
@@ -556,6 +593,7 @@ export async function renderApp(container = document.getElementById('app')) {
       ${headerHtml}
       <main id="main-content">
         ${homeHtml}
+        ${renderMarquee(tools)}
         ${aboutHtml}
         ${toolsHtml}
         ${projectsHtml}
@@ -655,6 +693,7 @@ export default {
   renderExperience,
   renderContact,
   renderFooter,
+  renderMarquee,
   escapeHtml,
   extractArray
 };

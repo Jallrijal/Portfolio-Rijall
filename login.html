@@ -1,191 +1,115 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Login Area CMS Pengelolaan Portofolio">
+  <meta name="robots" content="noindex, nofollow">
   <title>Login CMS - Portfolio Rijal</title>
 
-  <!-- Google Fonts: Poppins -->
+  <!-- Google Fonts: Geist + Instrument Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
     rel="stylesheet">
 
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  <!-- Main Stylesheet -->
+  <script>
+    // Terapkan tema sebelum render agar tidak berkedip
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+  </script>
+
   <link rel="stylesheet" href="./css/style.css">
 
   <style>
-    .login-wrapper {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-md);
-      background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 70%), var(--bg-page);
-    }
+    .login-wrapper { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); background: var(--bg-page); }
 
+    /* Panel kiri: blok warna kontras dengan tipografi besar */
+    .login-art {
+      position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+      padding: clamp(1.5rem, 4vw, 3.5rem); background: var(--accent-primary); color: var(--on-brand);
+    }
+    .login-brand { font-family: var(--serif); font-size: 1.75rem; line-height: 1; }
+    .login-art-title {
+      font-family: var(--serif); font-weight: 400; letter-spacing: -0.035em; line-height: 0.85;
+      font-size: clamp(4rem, 13vw, 12rem); animation: rise 1s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+    }
+    .login-art-title em { font-style: italic; }
+    .login-art-note { max-width: 30ch; font-size: 0.95rem; line-height: 1.5; color: color-mix(in srgb, var(--on-brand) 78%, transparent); }
+    .login-art::after {
+      content: ''; position: absolute; right: -6rem; top: -6rem; width: 18rem; height: 18rem; border-radius: 50%;
+      border: 1px solid color-mix(in srgb, var(--on-brand) 35%, transparent); box-shadow: 0 0 0 2.5rem color-mix(in srgb, var(--on-brand) 7%, transparent), 0 0 0 5rem color-mix(in srgb, var(--on-brand) 4%, transparent);
+      animation: float 9s ease-in-out infinite;
+    }
+    @keyframes float { 50% { transform: translate(-1rem, 1.5rem) scale(1.05); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(40px); } }
+
+    /* Panel kanan: form */
     .login-card {
-      width: 100%;
-      max-width: 420px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl) var(--space-lg);
-      box-shadow: var(--shadow-card);
-      backdrop-filter: var(--backdrop-blur);
-      -webkit-backdrop-filter: var(--backdrop-blur);
+      align-self: center; width: 100%; max-width: 28rem; margin-inline: auto; padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+      background: transparent; border: 0; box-shadow: none;
     }
+    .login-header { margin-bottom: 2.5rem; }
+    .login-icon { display: none; }
+    .login-title { font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); margin-bottom: 0.75rem; }
+    .login-subtitle { color: var(--text-muted); }
 
-    .login-header {
-      text-align: center;
-      margin-bottom: var(--space-lg);
-    }
-
-    .login-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius-md);
-      background: var(--accent-surface);
-      color: var(--accent-primary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: var(--space-xs);
-      border: 1px solid var(--accent-border);
-    }
-
-    .login-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: var(--space-3xs);
-    }
-
-    .login-subtitle {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-    }
-
-    .form-group {
-      margin-bottom: var(--space-md);
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-2xs);
-    }
-
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 1rem;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.6rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 0.95rem;
-      transition: all var(--transition-fast);
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px var(--accent-surface);
-    }
+    .form-group { margin-bottom: 2rem; }
+    .form-label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-icon { position: absolute; left: 0; color: var(--text-muted); pointer-events: none; }
+    .form-input { width: 100%; padding: 0.8rem 0 0.8rem 1.75rem; font-family: inherit; font-size: 1.05rem; }
 
     .error-box {
-      display: none;
-      padding: 0.75rem 1rem;
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: var(--radius-sm);
-      color: #fca5a5;
-      font-size: 0.85rem;
-      margin-bottom: var(--space-md);
-      align-items: center;
-      gap: var(--space-xs);
+      display: none; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; padding: 0.75rem 1rem;
+      border: 1px solid var(--accent-border); background: var(--accent-surface); color: var(--accent-primary);
+      border-radius: 2px; font-size: 0.875rem;
     }
-
-    .error-box.show {
-      display: flex;
-    }
+    .error-box.show { display: flex; animation: shake 0.4s; }
+    @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
     .btn-submit {
-      width: 100%;
-      padding: 0.85rem;
-      background: var(--accent-gradient);
-      color: var(--text-on-accent);
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2xs);
-      transition: opacity var(--transition-fast), transform var(--transition-fast);
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      width: 100%; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      font-weight: 500; font-size: 0.95rem; cursor: pointer;
     }
+    .btn-submit i { transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.2, 1); }
+    .btn-submit:hover i { transform: translateX(6px); }
 
-    .btn-submit:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-    }
+    .login-footer-actions { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); text-align: left; }
+    .back-link { font-size: 0.875rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.3s, gap 0.4s; }
+    .back-link:hover { color: var(--accent-primary); gap: 0.9rem; }
 
-    .login-footer-actions {
-      margin-top: var(--space-lg);
-      text-align: center;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: var(--space-md);
+    @media (max-width: 52rem) {
+      .login-wrapper { grid-template-columns: 1fr; }
+      .login-art { min-height: 44vh; }
+      .login-art-title { font-size: clamp(4rem, 22vw, 8rem); }
     }
-
-    .back-link {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2xs);
-      transition: color var(--transition-fast);
-    }
-
-    .back-link:hover {
-      color: var(--accent-primary);
-    }
+    @media (prefers-reduced-motion: reduce) { .login-art-title, .login-art::after, .error-box.show { animation: none; } }
   </style>
+
+  <link rel="stylesheet" href="./css/admin.css">
 </head>
 
 <body>
   <div class="login-wrapper">
+    <aside class="login-art" aria-hidden="true">
+      <span class="login-brand">Rijal.</span>
+      <h2 class="login-art-title">Ruang<br><em>kendali</em>.</h2>
+      <p class="login-art-note">Kelola teks, proyek, dan pengalaman portofolio dari satu tempat.</p>
+    </aside>
+
     <main class="login-card">
       <header class="login-header">
         <div class="login-icon" aria-hidden="true">
           <i class="fa-solid fa-lock"></i>
         </div>
-        <h1 class="login-title">CMS Login</h1>
-        <p class="login-subtitle">Masuk untuk mengelola konten portofolio</p>
+        <h1 class="login-title">Masuk.</h1>
+        <p class="login-subtitle">Masukkan password untuk mengelola konten portofolio.</p>
       </header>
 
       <!-- Pesan Kesalahan Password -->
@@ -220,10 +144,6 @@
   </div>
 
   <script>
-    // Sinkronkan tema dari preferensi lokal
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-
     const loginForm = document.getElementById('login-form');
     const passwordInput = document.getElementById('password');
     const errorBox = document.getElementById('error-message');
@@ -237,6 +157,8 @@
         sessionStorage.setItem('portfolio_cms_auth', 'true');
         window.location.href = './cms.html';
       } else {
+        errorBox.classList.remove('show');
+        void errorBox.offsetWidth;
         errorBox.classList.add('show');
         passwordInput.value = '';
         passwordInput.focus();

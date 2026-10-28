@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Admin skin (login + CMS)
+   Memetakan token lama (style.css) ke palet editorial situs utama,
+   lalu menimpa komponen utama. Dimuat SETELAH style.css dan style inline.
+   ========================================================================== */
+
+:root,
+html[data-theme="light"],
+:root[data-theme="light"] {
+  color-scheme: light;
+  --font-primary: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Instrument Serif', 'Times New Roman', serif;
+
+  --bg-page: #f3f0e9;
+  --bg-card: #f3f0e9;
+  --bg-card-hover: #ece8de;
+  --bg-surface: #ece8de;
+  --bg-surface-elevated: #f3f0e9;
+  --bg-nav: #f3f0e9;
+  --bg-nav-pill: #f3f0e9;
+
+  --border-subtle: #d9d5ca;
+  --border-card: #d9d5ca;
+  --border-hover: #111110;
+
+  --text-primary: #111110;
+  --text-secondary: #44433f;
+  --text-muted: #75736c;
+  --text-on-accent: #f3f0e9;
+  --on-brand: #f3f0e9;
+
+  --accent-primary: #2f5d46;
+  --accent-primary-hover: #254a38;
+  --accent-secondary: #2f5d46;
+  --accent-gradient: linear-gradient(#2f5d46, #2f5d46);
+  --accent-surface: rgba(47, 93, 70, 0.1);
+  --accent-border: rgba(47, 93, 70, 0.4);
+
+  --shadow-subtle: none;
+  --shadow-card: none;
+  --shadow-card-hover: none;
+  --shadow-nav: none;
+  --backdrop-blur: none;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --ink: #111110;
+  --paper: #f3f0e9;
+  --side-bg: #111110;
+  --side-ink: #f1eee6;
+  --side-muted: #85827a;
+  --side-rule: #2d2d2a;
+}
+
+html[data-theme="dark"],
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-page: #0d0d0c;
+  --bg-card: #0d0d0c;
+  --bg-card-hover: #171715;
+  --bg-surface: #171715;
+  --bg-surface-elevated: #131311;
+  --bg-nav: #0d0d0c;
+  --bg-nav-pill: #0d0d0c;
+
+  --border-subtle: #262623;
+  --border-card: #262623;
+  --border-hover: #f1eee6;
+
+  --text-primary: #f1eee6;
+  --text-secondary: #b4b1a8;
+  --text-muted: #85827a;
+  --text-on-accent: #0e1a13;
+  --on-brand: #0e1a13;
+
+  --accent-primary: #8cc3a3;
+  --accent-primary-hover: #a5d4ba;
+  --accent-secondary: #8cc3a3;
+  --accent-gradient: linear-gradient(#8cc3a3, #8cc3a3);
+  --accent-surface: rgba(140, 195, 163, 0.12);
+  --accent-border: rgba(140, 195, 163, 0.45);
+
+  --ink: #f1eee6;
+  --paper: #0d0d0c;
+  --side-bg: #f1eee6;
+  --side-ink: #111110;
+  --side-muted: #75736c;
+  --side-rule: #d0ccc0;
+}
+
+body { font-family: var(--font-primary); background: var(--bg-page); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--accent-primary); color: var(--text-on-accent); }
+:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 3px; }
+
+/* ---------- Headings ---------- */
+.cms-page-title, .cms-panel-heading, .cms-card-title, .cms-brand-title, .login-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cms-page-title { font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem); }
+.cms-panel-heading { font-size: clamp(2rem, 1.4rem + 2.5vw, 3.5rem); line-height: 0.95; }
+.cms-card-title { font-size: 1.5rem; }
+.cms-panel-desc, .cms-help-text { color: var(--text-muted); }
+
+/* ---------- Layout & sidebar (blok kontras) ---------- */
+.cms-sidebar { background: var(--side-bg); color: var(--side-ink); border-right: 0; }
+.cms-sidebar-header { border-bottom: 1px solid var(--side-rule); }
+.cms-brand-badge { background: var(--accent-primary); color: var(--on-brand); border-radius: 50%; font-family: var(--serif); font-size: 1.35rem; border: 0; }
+.cms-brand-title { color: var(--side-ink); font-size: 1.5rem; }
+.cms-brand-sub { color: var(--side-muted); }
+.cms-nav-label { color: var(--side-muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.7rem; }
+.cms-nav { padding-inline: 0.75rem; }
+.cms-nav-item { width: 100%; padding: 0.75rem 1rem; color: var(--side-muted); border-radius: 999px; background: transparent; border: 0; transition: background 0.3s, color 0.3s, padding 0.4s cubic-bezier(0.22, 0.8, 0.2, 1); }
+.cms-nav-item:hover { color: var(--side-ink); background: transparent; padding-left: 1.4rem; }
+.cms-nav-item.is-active { background: var(--accent-primary); color: var(--on-brand); box-shadow: none; }
+.cms-nav-item.is-active i { color: inherit; }
+.cms-sidebar-footer { border-top: 1px solid var(--side-rule); }
+.cms-footer-link, .btn-logout { color: var(--side-muted); border-radius: 999px; background: transparent; border-color: var(--side-rule); }
+.cms-footer-link:hover, .btn-logout:hover { color: var(--side-ink); border-color: var(--side-ink); background: transparent; }
+
+.cms-main { background: var(--bg-page); }
+.cms-topbar { background: color-mix(in srgb, var(--bg-page) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); box-shadow: none; }
+
+/* ---------- Buttons ---------- */
+.topbar-action-btn, .topbar-logout-btn, .btn-cms-reset, .btn-cms-add, .btn-file-select {
+  border-radius: 999px; background: transparent; color: var(--text-primary);
+  border: 1px solid var(--border-subtle); box-shadow: none;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+.topbar-action-btn:hover, .topbar-logout-btn:hover, .btn-cms-reset:hover, .btn-cms-add:hover, .btn-file-select:hover {
+  border-color: var(--text-primary); background: transparent; color: var(--text-primary);
+}
+.btn-cms-save, .btn-submit {
+  border-radius: 999px; background: var(--text-primary); color: var(--bg-page);
+  border: 1px solid var(--text-primary); box-shadow: none;
+  transition: background 0.35s, border-color 0.35s, color 0.35s, transform 0.35s;
+}
+.btn-cms-save:hover, .btn-submit:hover { background: var(--accent-primary); border-color: var(--accent-primary); color: var(--text-on-accent); opacity: 1; transform: none; }
+.btn-remove-item { border-radius: 999px; }
+
+/* ---------- Cards & fields ---------- */
+.cms-form-card, .cms-item-card { background: transparent; border: 1px solid var(--border-subtle); border-radius: 2px; box-shadow: none; }
+.cms-item-card:hover, .cms-form-card:hover { border-color: var(--text-primary); }
+.cms-card-badge, .cms-item-badge, .cms-file-size-tag { border-radius: 999px; background: var(--accent-surface); color: var(--accent-primary); border: 1px solid var(--accent-border); }
+.cms-label { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; }
+.cms-input, .cms-textarea, .cms-select, .form-input {
+  background: transparent; color: var(--text-primary);
+  border: 0; border-bottom: 1px solid var(--border-subtle); border-radius: 0;
+  box-shadow: none; transition: border-color 0.3s;
+}
+.cms-input:focus, .cms-textarea:focus, .cms-select:focus, .form-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: none; }
+.cms-img-preview { border-radius: 2px; border: 1px solid var(--border-subtle); }
+.cms-placeholder { color: var(--text-muted); border-color: var(--border-subtle); border-radius: 2px; }
+
+/* ---------- Toast ---------- */
+.cms-toast { background: var(--text-primary); color: var(--bg-page); border: 0; border-radius: 999px; box-shadow: none; }
+.cms-toast.is-success .toast-icon { color: #7ddc9a; }
+.cms-toast.is-error .toast-icon { color: var(--accent-primary); }
+
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
