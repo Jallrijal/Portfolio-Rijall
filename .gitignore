@@ -1,9 +1,11 @@
 PRD.md
 assets/
 .agents/
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/portfolio-design/
 agent/
 skills-lock.json
-Design.md
 portfolio.json
 seed.json
