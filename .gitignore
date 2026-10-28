@@ -1,5 +1,4 @@
 PRD.md
-assets/
 .agents/
 .claude/*
 !.claude/skills/
