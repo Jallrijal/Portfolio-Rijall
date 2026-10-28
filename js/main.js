@@ -363,8 +363,8 @@ function initGsapAnimations() {
 
   // Parallax gambar di dalam bingkai
   gsap.utils.toArray('.profile-avatar-img, .about-avatar-img').forEach((img) => {
-    gsap.fromTo(img, { yPercent: -7 }, {
-      yPercent: 7, ease: 'none',
+    gsap.fromTo(img, { yPercent: 0 }, {
+      yPercent: -12, ease: "none",
       scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
     });
   });

@@ -81,7 +81,7 @@ Aturan:
 4. **Nomor section** otomatis lewat CSS counter (`01 /`, `(01)`). Jangan ditulis manual.
 5. **Ritme warna:** section bergantian terang → kontras (Tools, `--inv-*`) → terang → aksen (Contact). Maksimal dua blok warna penuh.
 6. **Hindari "AI slop":** ikon dalam kotak berwarna, deretan 3 kartu identik, gradient ungu/biru, glow, emoji sebagai hiasan, teks "Welcome to".
-7. Gambar memakai placeholder (`picsum.photos`, `?grayscale`) sampai ada foto asli. Foto hero dibuat duotone (`background: var(--brand)` + `mix-blend-mode: multiply`).
+7. Gambar memakai foto di `assets/` (`assets/Profil/`, `assets/Project/`). Foto orang tampil semi-monokrom (`grayscale(0.85)` + kontras ringan) dan berwarna penuh saat di-hover. Bingkai hero berbentuk lengkung landai, foto dijangkarkan ke atas (`object-position`) agar kepala tidak terpotong. Tanpa duotone, bloom, atau tint warna pada wajah.
 
 ## 4. Komponen
 
@@ -96,7 +96,7 @@ Aturan:
 - Tombol utama dan navbar bersifat **magnetik** (GSAP, hanya perangkat dengan kursor).
 
 ### Hero
-- Nama serif raksasa dengan `mix-blend-mode: difference` di atas foto duotone.
+- Nama serif raksasa dengan `mix-blend-mode: difference` di atas foto (semi-monokrom).
 - Aksesori: badge berputar "OPEN FOR WORK", dua stiker miring, jam WIB, garis kolom latar.
 
 ### Pita (marquee)

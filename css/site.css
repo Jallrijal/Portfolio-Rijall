@@ -162,8 +162,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .hero-visual { position: absolute; z-index: 1; top: calc(var(--nav-h) + 3.25rem); right: calc(var(--gutter) + 1vw); width: clamp(10rem, 22vw, 22rem); }
 .profile-card { display: block; }
-.profile-avatar-frame { aspect-ratio: 4 / 5; background: var(--brand); overflow: hidden; border-radius: 999px 999px 4px 4px; }
-.profile-avatar-img { width: 100%; height: 118%; object-fit: cover; will-change: transform; mix-blend-mode: multiply; filter: grayscale(1) contrast(1.25); }
+.profile-card { position: relative; isolation: isolate; }
+.profile-avatar-frame { position: relative; aspect-ratio: 4 / 5; background: var(--fill); overflow: hidden; border-radius: 50% 50% 4px 4px / 22% 22% 4px 4px; }
+.profile-avatar-img { width: 100%; height: 118%; object-fit: cover; will-change: transform; object-position: 50% 0%; filter: grayscale(0.85) contrast(1.08) brightness(1.02); transition: filter 0.7s var(--ease); }
+.profile-card:hover .profile-avatar-img, .about-photos:hover .about-avatar-img { filter: grayscale(0) contrast(1.02); }
 .profile-card-footer { display: none; }
 
 /* ---------- Crossing bands ---------- */
@@ -214,7 +216,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .about-photo-2 { position: absolute; right: -1.5rem; bottom: -2.5rem; width: 42%; aspect-ratio: 1; border: 6px solid var(--bg); background: var(--fill); overflow: hidden; transform: rotate(5deg); }
 .about-photo-2 img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 .about-sticker { top: -1rem; right: 1.5rem; background: var(--brand); color: var(--on-brand); transform: rotate(7deg); }
-.about-avatar-img { width: 100%; height: 118%; object-fit: cover; will-change: transform; }
+.about-avatar-img { width: 100%; height: 118%; object-fit: cover; object-position: 50% 10%; filter: grayscale(0.85) contrast(1.08) brightness(1.02); transition: filter 0.7s var(--ease); will-change: transform; }
 .personal-info-list { border-top: 1px solid var(--rule); }
 .personal-info-item { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--rule); }
 .info-icon { display: none; }

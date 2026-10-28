@@ -159,7 +159,7 @@ export function renderHome(data) {
       `).join('')}
     </div>` : '';
 
-  const avatarSrc = data.avatar || 'https://picsum.photos/seed/rijal-portrait/800/1000?grayscale';
+  const avatarSrc = data.avatar || './assets/Profil/Img-Profil.jpeg';
   const stickerA = typewriterRoles[0] ? `<span class="sticker sticker-a">${escapeHtml(typewriterRoles[0])}</span>` : '';
   const stickerB = typewriterRoles[1] ? `<span class="sticker sticker-b">${escapeHtml(typewriterRoles[1])}</span>` : '';
   const avatarHtml = `
@@ -215,7 +215,7 @@ export function renderAbout(data) {
 
   const title = escapeHtml(data.title || 'About Me');
   const subtitle = escapeHtml(data.subtitle || 'Mengenal Lebih Dekat');
-  const avatarSrc = data.avatar || 'https://picsum.photos/seed/rijal-portrait/800/1000?grayscale';
+  const avatarSrc = data.avatar || './assets/Profil/Img-Profil.jpeg';
 
   const personalInfo = extractArray(data.personalInfo);
   const personalInfoHtml = personalInfo.length > 0 ? `
@@ -270,7 +270,7 @@ export function renderAbout(data) {
               <img src="${escapeHtml(avatarSrc)}" alt="Potret ${title}" class="about-avatar-img" loading="lazy" onerror="this.remove()">
             </div>
             <div class="about-photo-2" aria-hidden="true">
-              <img src="https://picsum.photos/seed/rijal-desk/600/600?grayscale" alt="" loading="lazy" onerror="this.remove()">
+              <img src="./assets/Profil/12.jpeg" alt="" loading="lazy" onerror="this.remove()">
             </div>
             <span class="sticker about-sticker">Halo!</span>
           </div>
@@ -380,7 +380,7 @@ export function renderProjects(data) {
     return `
     <article class="project-card ${proj.featured ? 'is-featured' : ''}" ${proj.id ? `id="${escapeHtml(proj.id)}"` : ''}>
       <div class="project-thumbnail-wrapper">
-        <img src="${escapeHtml(proj.image || 'https://picsum.photos/seed/rijal-project/1400/1000?grayscale')}" alt="Tangkapan layar proyek ${escapeHtml(proj.title || '')}" class="project-img" loading="lazy" onerror="this.remove()">
+        <img src="${escapeHtml(proj.image || './assets/Project/Project K-link.png')}" alt="Tangkapan layar proyek ${escapeHtml(proj.title || '')}" class="project-img" loading="lazy" onerror="this.remove()">
         ${proj.category ? `<span class="project-category-badge">${escapeHtml(proj.category)}</span>` : ''}
       </div>
       <div class="project-card-body">
