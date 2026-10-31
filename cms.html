@@ -866,6 +866,72 @@
         max-width: 100%;
       }
     }
+
+    /* =============================================
+       Drag and Drop Reorder - Projects List
+       ============================================= */
+    .cms-item-card[draggable="true"] {
+      cursor: default;
+    }
+
+    .cms-item-card.is-dragging {
+      opacity: 0.4;
+      border-style: dashed;
+      border-color: var(--accent-primary);
+    }
+
+    .cms-item-card.drag-over {
+      border-color: var(--accent-primary);
+      background: var(--accent-surface);
+      box-shadow: 0 0 0 2px var(--accent-primary);
+    }
+
+    .drag-handle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-xs);
+      color: var(--text-muted);
+      cursor: grab;
+      flex-shrink: 0;
+      transition: color var(--transition-fast), background var(--transition-fast);
+      touch-action: none;
+    }
+
+    .drag-handle:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    .drag-handle i {
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .cms-item-top-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+
+    .reorder-hint {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: var(--space-2xs) 0 var(--space-xs);
+    }
+
+    .reorder-hint i {
+      font-size: 0.7rem;
+    }
   </style>
   <link rel="stylesheet" href="./css/admin.css">
 </head>
@@ -1317,6 +1383,11 @@
 
             <p class="cms-help-text" style="margin-bottom: var(--space-sm);">
               Upload gambar tangkapan layar dikompresi otomatis via &lt;canvas&gt; (lebar maks. 800px, JPEG 0.7) sebagai Base64 dengan proteksi kuota localStorage.
+            </p>
+
+            <p class="reorder-hint">
+              <i class="fa-solid fa-grip-vertical"></i>
+              Seret kartu proyek menggunakan ikon pegangan untuk mengubah urutan tampilan di portofolio.
             </p>
 
             <div class="cms-list-container" id="projectsItemsList">
@@ -2289,12 +2360,17 @@
         const sizeTagText = isBase64 ? `Base64 JPEG (~${Math.round((imgSrc.length * 3) / 4 / 1024)} KB)` : 'Path / URL';
 
         return `
-          <div class="cms-item-card" data-index="${index}">
+          <div class="cms-item-card" draggable="true" data-index="${index}">
             <div class="cms-item-top">
-              <span class="cms-item-badge">
-                <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
-                <span>${escapeHtml(item.title || `Proyek #${index + 1}`)}</span>
-              </span>
+              <div class="cms-item-top-left">
+                <span class="drag-handle" title="Seret untuk mengubah urutan" aria-label="Seret untuk mengubah urutan proyek">
+                  <i class="fa-solid fa-grip-vertical"></i>
+                </span>
+                <span class="cms-item-badge">
+                  <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                  <span>${escapeHtml(item.title || `Proyek #${index + 1}`)}</span>
+                </span>
+              </div>
               <button type="button" class="btn-remove-item btn-remove-project-item" data-index="${index}" aria-label="Hapus proyek ${index + 1}">
                 <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                 <span>Hapus</span>
@@ -2420,6 +2496,52 @@
           const idx = parseInt(btn.dataset.index, 10);
           projectsItems.splice(idx, 1);
           renderProjectsItemsList();
+        });
+      });
+
+      // Drag-and-drop reorder
+      let dragSrcIndex = null;
+
+      list.querySelectorAll('.cms-item-card[draggable="true"]').forEach((card) => {
+        const handle = card.querySelector('.drag-handle');
+        if (!handle) return;
+
+        handle.addEventListener('mousedown', () => { card.draggable = true; });
+        handle.addEventListener('touchstart', () => { card.draggable = true; }, { passive: true });
+
+        card.addEventListener('dragstart', (e) => {
+          dragSrcIndex = parseInt(card.dataset.index, 10);
+          card.classList.add('is-dragging');
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', String(dragSrcIndex));
+        });
+
+        card.addEventListener('dragend', () => {
+          card.classList.remove('is-dragging');
+          list.querySelectorAll('.cms-item-card').forEach(c => c.classList.remove('drag-over'));
+        });
+
+        card.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          list.querySelectorAll('.cms-item-card').forEach(c => c.classList.remove('drag-over'));
+          card.classList.add('drag-over');
+        });
+
+        card.addEventListener('dragleave', () => {
+          card.classList.remove('drag-over');
+        });
+
+        card.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const dropIndex = parseInt(card.dataset.index, 10);
+          if (dragSrcIndex === null || dragSrcIndex === dropIndex) return;
+          collectProjectsItemsData();
+          const moved = projectsItems.splice(dragSrcIndex, 1)[0];
+          projectsItems.splice(dropIndex, 0, moved);
+          dragSrcIndex = null;
+          renderProjectsItemsList();
+          showToast('Proyek berhasil diurutkan ulang ke posisi ' + (dropIndex + 1) + '.');
         });
       });
     }
