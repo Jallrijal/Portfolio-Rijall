@@ -112,80 +112,80 @@
         "id": "tool-html5",
         "name": "HTML5",
         "category": "Frontend",
-        "iconType": "devicon",
-        "iconClass": "devicon-html5-plain colored",
-        "description": "Penyusunan struktur dokumen web yang semantik dan ramah aksesibilitas.",
         "proficiency": "Advanced",
+        "iconClass": "devicon-html5-plain colored",
+        "iconType": "devicon",
+        "description": "Penyusunan struktur dokumen web yang semantik dan ramah aksesibilitas.",
         "isFeatured": true
       },
       {
         "id": "tool-css3",
         "name": "CSS3",
         "category": "Styling & Design",
-        "iconType": "devicon",
-        "iconClass": "devicon-css3-plain colored",
-        "description": "Tata letak modern dengan Flexbox, Grid, CSS Variables, dan animasi transisi.",
         "proficiency": "Advanced",
+        "iconClass": "devicon-css3-plain colored",
+        "iconType": "devicon",
+        "description": "Tata letak modern dengan Flexbox, Grid, CSS Variables, dan animasi transisi.",
         "isFeatured": true
       },
       {
         "id": "tool-javascript",
         "name": "JavaScript (ES6+)",
         "category": "Frontend",
-        "iconType": "devicon",
-        "iconClass": "devicon-javascript-plain colored",
-        "description": "Logika interaktif, manipulasi DOM dinamis, asynchronous fetch, dan modularitas kode.",
         "proficiency": "Advanced",
+        "iconClass": "devicon-javascript-plain colored",
+        "iconType": "devicon",
+        "description": "Logika interaktif, manipulasi DOM dinamis, asynchronous fetch, dan modularitas kode.",
         "isFeatured": true
       },
       {
         "id": "tool-gsap",
         "name": "GSAP",
         "category": "Styling & Design",
-        "iconType": "devicon",
-        "iconClass": "devicon-greensock-plain colored",
-        "description": "Animasi timeline performa tinggi dan efek transisi interaktif dengan ScrollTrigger.",
         "proficiency": "Intermediate",
+        "iconClass": "devicon-greensock-plain colored",
+        "iconType": "devicon",
+        "description": "Animasi timeline performa tinggi dan efek transisi interaktif dengan ScrollTrigger.",
         "isFeatured": true
       },
       {
         "id": "tool-git",
         "name": "Git",
         "category": "Tools & Versioning",
-        "iconType": "devicon",
-        "iconClass": "devicon-git-plain colored",
-        "description": "Pelacakan riwayat versi kode dan pengelolaan branch pengembangan proyek.",
         "proficiency": "Intermediate",
+        "iconClass": "devicon-git-plain colored",
+        "iconType": "devicon",
+        "description": "Pelacakan riwayat versi kode dan pengelolaan branch pengembangan proyek.",
         "isFeatured": true
       },
       {
         "id": "tool-github",
         "name": "GitHub",
         "category": "Tools & Versioning",
-        "iconType": "devicon",
-        "iconClass": "devicon-github-original",
-        "description": "Penyimpanan repositori daring, kolaborasi kode, dan deployment ke GitHub Pages.",
         "proficiency": "Intermediate",
+        "iconClass": "devicon-github-original",
+        "iconType": "devicon",
+        "description": "Penyimpanan repositori daring, kolaborasi kode, dan deployment ke GitHub Pages.",
         "isFeatured": true
       },
       {
         "id": "tool-vscode",
         "name": "VS Code",
         "category": "Tools & Versioning",
-        "iconType": "devicon",
-        "iconClass": "devicon-vscode-plain colored",
-        "description": "Pusat lingkungan kerja penulisan kode dengan konfigurasi ekstensi produktivitas.",
         "proficiency": "Advanced",
+        "iconClass": "devicon-vscode-plain colored",
+        "iconType": "devicon",
+        "description": "Pusat lingkungan kerja penulisan kode dengan konfigurasi ekstensi produktivitas.",
         "isFeatured": false
       },
       {
         "id": "tool-figma",
         "name": "Figma",
         "category": "Styling & Design",
-        "iconType": "devicon",
-        "iconClass": "devicon-figma-plain colored",
-        "description": "Perancangan wireframe, eksplorasi mockup UI, dan acuan slicing desain ke kode.",
         "proficiency": "Intermediate",
+        "iconClass": "devicon-figma-plain colored",
+        "iconType": "devicon",
+        "description": "Perancangan wireframe, eksplorasi mockup UI, dan acuan slicing desain ke kode.",
         "isFeatured": false
       }
     ]
@@ -195,11 +195,29 @@
     "subtitle": "Karya Pilihan yang Pernah Saya Kembangkan",
     "items": [
       {
+        "id": "proj-sipadeceng",
+        "title": "Sistem Pengajuan cuti Pegawai",
+        "slug": "sipadeceng-system",
+        "category": "Information System",
+        "summary": "Sistem pengajuan cuti pegawai yang mengutamakan efisiensi waktu dan kemudahan rekapitulasi data pengajuan cuti",
+        "description": "Memudahkan pegawai dalam mengajukan cuti dengan lebih cepat dan lebih mudah dalam melacak pengajuan cuti pegawai",
+        "image": "./assets/Project/Project-Sipadeceng.png",
+        "tags": [
+          "Web System",
+          "Dashboard UI",
+          "PHP"
+        ],
+        "demoUrl": "https://sipadeceng.pta-makassar.go.id/",
+        "repoUrl": "https://github.com/Jallrijal/sipadeceng",
+        "featured": true,
+        "order": 1
+      },
+      {
         "id": "proj-klink",
         "title": "K-Link Web Application",
         "slug": "k-link-app",
         "category": "Web Application",
-        "summary": "Platform web untuk menghubungkan layanan komunitas dan komunikasi terintegrasi.",
+        "summary": "Platform web untuk menghubungkan layanan klinik dan informasi pasien secara terintegrasi.",
         "description": "Aplikasi berbasis web dengan fokus pada antarmuka pengguna yang bersih, responsif, dan alur navigasi yang intuitif.",
         "image": "./assets/Project/Project K-link.png",
         "tags": [
@@ -207,10 +225,10 @@
           "CSS3",
           "JavaScript"
         ],
-        "demoUrl": "https://example.com/k-link",
-        "repoUrl": "https://github.com/Jallrijal/k-link",
+        "demoUrl": "#",
+        "repoUrl": "https://github.com/Jallrijal/mini-clinic-information-system",
         "featured": true,
-        "order": 1
+        "order": 2
       },
       {
         "id": "proj-burgold",
@@ -225,10 +243,10 @@
           "CSS3",
           "GSAP"
         ],
-        "demoUrl": "https://example.com/burgold",
-        "repoUrl": "https://github.com/Jallrijal/burgold",
+        "demoUrl": "#",
+        "repoUrl": "#",
         "featured": true,
-        "order": 2
+        "order": 3
       },
       {
         "id": "proj-jersell",
@@ -243,10 +261,10 @@
           "CSS3",
           "Responsive Design"
         ],
-        "demoUrl": "https://example.com/jersell",
-        "repoUrl": "https://github.com/Jallrijal/jersell",
+        "demoUrl": "#",
+        "repoUrl": "#",
         "featured": true,
-        "order": 3
+        "order": 4
       },
       {
         "id": "proj-kanbanflow",
@@ -261,26 +279,8 @@
           "Drag & Drop API",
           "LocalStorage"
         ],
-        "demoUrl": "https://example.com/kanbanflow",
-        "repoUrl": "https://github.com/Jallrijal/kanbanflow",
-        "featured": false,
-        "order": 4
-      },
-      {
-        "id": "proj-sipadeceng",
-        "title": "Sipadeceng Information System",
-        "slug": "sipadeceng-system",
-        "category": "Information System",
-        "summary": "Sistem informasi pelayanan administrasi publik yang terstruktur dan mudah diakses.",
-        "description": "Mengakomodasi kebutuhan pengelolaan data pelayanan warga dengan dasbor navigasi yang ramah pengguna.",
-        "image": "./assets/Project/Project-Sipadeceng.png",
-        "tags": [
-          "Web System",
-          "Dashboard UI",
-          "JavaScript"
-        ],
-        "demoUrl": "https://example.com/sipadeceng",
-        "repoUrl": "https://github.com/Jallrijal/sipadeceng",
+        "demoUrl": "#",
+        "repoUrl": "https://github.com/Jallrijal/kanban-board",
         "featured": false,
         "order": 5
       }
@@ -292,43 +292,67 @@
     "items": [
       {
         "id": "exp-frontend-freelance",
-        "role": "Freelance Web Developer",
-        "company": "Mandiri / Self-Employed",
-        "location": "Remote, Indonesia",
-        "period": "2023 - Sekarang",
-        "type": "Freelance",
-        "description": "Merancang dan membangun situs web kustom untuk klien personal maupun usaha kecil, mengutamakan kecepatan akses, tata letak responsif, dan interaktivitas yang rapi.",
+        "role": "Fullstack Web Developer",
+        "company": "Pengadilan Tinggi Agama Makassar",
+        "location": "Makassar, Indonesia",
+        "period": "Mei - Agustus 2025",
+        "type": "Magang",
+        "description": "Merancang dan membangun sistem pengajuan cuti berbasis web untuk pegawai Pengadilan Tinggi Agama Makassar, mengutamakan kecepatan akses, tata letak responsif, dan interaktivitas yang rapi.",
         "achievements": [
           {
-            "id": "ach-1",
-            "text": "Menyelesaikan lebih dari 10 proyek website tepat waktu dengan tingkat kepuasan klien yang tinggi."
+            "id": "ach-1-1",
+            "text": "Menyelesaikan proyek website tepat waktu dengan tingkat kepuasan klien yang tinggi."
           },
           {
-            "id": "ach-2",
-            "text": "Menerapkan animasi berbasis GSAP untuk menghidupkan antarmuka tanpa mengorbankan performa muat halaman."
+            "id": "ach-1-2",
+            "text": "Memberikan efisiensi waktu dalam pengajuan cuti dan kemudahan dalam rekapitulasi data cuti pegawai."
           }
         ],
         "order": 1
       },
       {
         "id": "exp-intern-developer",
-        "role": "Frontend Web Intern",
-        "company": "Tech Studio / Mitra Digital",
+        "role": "Wordpress Web Developer",
+        "company": "MySkill",
         "location": "Indonesia",
-        "period": "2023 - 2024",
-        "type": "Magang",
-        "description": "Membantu tim pengembang dalam slicing desain Figma ke kode HTML dan CSS semantik, memperbaiki tata letak antarmuka lintas peramban, serta merapikan interaksi skrip.",
+        "period": "Februari - April 2025",
+        "type": "Pelatihan",
+        "description": "Membangun website penjualan burger Burgold berbasis WordPress dengan katalog menu, sistem pemesanan, dan tata letak responsif yang cepat diakses.",
         "achievements": [
           {
-            "id": "ach-3",
-            "text": "Mengonversi rancangan mockup Figma menjadi halaman web responsif dengan akurasi visual yang presisi."
+            "id": "ach-2-1",
+            "text": "Membangun website penjualan burger berbasis WordPress dan WooCommerce yang memuat katalog menu lengkap dengan foto, harga, dan varian (ukuran, tambahan topping)."
           },
           {
-            "id": "ach-4",
-            "text": "Mengoptimalkan aset gambar dan penataan stylesheet guna mempercepat proses rendering awal browser."
+            "id": "ach-2-2",
+            "text": "Merancang alur pemesanan online dari pilih menu sampai checkout, sehingga pelanggan bisa memesan tanpa harus chat manual ke admin."
+          },
+          {
+            "id": "ach-2-3",
+            "text": "Menerapkan tata letak responsif yang nyaman diakses dari ponsel, tablet, dan desktop, karena sebagian besar pelanggan memesan lewat HP."
           }
         ],
         "order": 2
+      },
+      {
+        "id": "exp-1793414952928",
+        "role": "Mahasiswa",
+        "company": "Universitas Negeri Makassar",
+        "location": "Makassar, Indonesia",
+        "period": "2022 - 2026",
+        "type": "Pendidikan",
+        "description": "Freshgraduate Rekayasa Perangkat Lunak dengan pengalaman membangun aplikasi web melalui proyek akademik",
+        "achievements": [
+          {
+            "id": "ach-3-1",
+            "text": "IPK 3.92"
+          },
+          {
+            "id": "ach-3-2",
+            "text": "Wisudawan Terbaik Tingkat Program Studi Periode Wisuda Juli 2026"
+          }
+        ],
+        "order": 3
       }
     ]
   },
@@ -352,8 +376,8 @@
       {
         "id": "contact-linkedin",
         "platform": "LinkedIn",
-        "label": "linkedin.com/in/rijall",
-        "url": "https://linkedin.com/in/rijall",
+        "label": "Rijal Imamul Haq Syamsu Alam",
+        "url": "https://www.linkedin.com/in/rijal-imamul-haq-syamsu-alam-13a99b42a/",
         "iconClass": "fa-brands fa-linkedin-in",
         "color": "#0a66c2",
         "isPrimary": true
@@ -361,7 +385,7 @@
       {
         "id": "contact-github",
         "platform": "GitHub",
-        "label": "github.com/Jallrijal",
+        "label": "Jallrijal",
         "url": "https://github.com/Jallrijal",
         "iconClass": "fa-brands fa-github",
         "color": "#ffffff",
@@ -370,8 +394,8 @@
       {
         "id": "contact-whatsapp",
         "platform": "WhatsApp",
-        "label": "+62 812-xxxx-xxxx",
-        "url": "https://wa.me/6281200000000",
+        "label": "+62 822-2603-8786",
+        "url": "https://wa.me/6282226038786",
         "iconClass": "fa-brands fa-whatsapp",
         "color": "#25d366",
         "isPrimary": false

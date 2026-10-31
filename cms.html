@@ -1006,6 +1006,10 @@
             <i class="fa-solid fa-download" aria-hidden="true"></i>
             <span>Export JSON</span>
           </button>
+          <button type="button" class="topbar-action-btn topbar-publish-btn" id="btnPublish" title="Publish perubahan ke GitHub Pages" aria-label="Publish ke GitHub Pages">
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+            <span>Publish</span>
+          </button>
           <label class="topbar-action-btn" for="importJsonFileInput" title="Unggah file JSON untuk memuat data ke browser" aria-label="Unggah file JSON portofolio">
             <i class="fa-solid fa-upload" aria-hidden="true"></i>
             <span>Import JSON</span>
@@ -1018,6 +1022,12 @@
         </div>
       </header>
 
+      <!-- PUBLISH BANNER -->
+      <div class="cms-publish-banner" id="publishBanner">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        <span>Perubahan hanya tersimpan di browser ini. Klik <strong>Publish</strong> agar terlihat di semua perangkat.</span>
+        <button type="button" class="cms-banner-close" id="publishBannerClose" aria-label="Tutup notifikasi">&times;</button>
+      </div>
       <main class="cms-content" id="cmsContent">
 
         <!-- PANEL HERO / HOME -->
@@ -3016,7 +3026,7 @@
         const blob = new Blob([dataString], { type: 'application/json;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const dateStr = new Date().toISOString().slice(0, 10);
-        const filename = `portfolio-data-${dateStr}.json`;
+        const filename = 'portfolio.json';
 
         const a = document.createElement('a');
         a.href = url;
@@ -3169,12 +3179,82 @@
       ]);
     }
 
+    // =========================================================================
+    // 8. PUBLISH MODAL
+    // =========================================================================
+    const publishModal = document.getElementById('publishModal');
+    const publishBanner = document.getElementById('publishBanner');
+
+    function openPublishModal() { publishModal.hidden = false; }
+    function closePublishModal() { publishModal.hidden = true; }
+
+    document.getElementById('btnPublish').addEventListener('click', openPublishModal);
+    document.getElementById('publishModalClose').addEventListener('click', closePublishModal);
+    document.getElementById('publishModalCancel').addEventListener('click', closePublishModal);
+    publishModal.addEventListener('click', (e) => { if (e.target === publishModal) closePublishModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !publishModal.hidden) closePublishModal(); });
+
+    document.getElementById('publishBannerClose').addEventListener('click', () => {
+      publishBanner.style.display = 'none';
+    });
+
+    document.getElementById('btnDownloadForPublish').addEventListener('click', async () => {
+      await doExportJson();
+    });
+
+    document.getElementById('btnCopyGitCmd').addEventListener('click', () => {
+      const cmd = 'git add data/portfolio.json\ngit commit -m "update: portfolio data"\ngit push';
+      navigator.clipboard.writeText(cmd).then(() => {
+        showToast('Perintah git berhasil disalin!', 'success');
+      }).catch(() => {
+        showToast('Gagal menyalin, salin manual dari kotak perintah.', 'error');
+      });
+    });
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCMS);
     } else {
       initCMS();
     }
   </script>
+  <!-- PUBLISH MODAL -->
+  <div class="cms-modal-overlay" id="publishModal" aria-modal="true" role="dialog" aria-labelledby="publishModalTitle" hidden>
+    <div class="cms-modal">
+      <div class="cms-modal-header">
+        <h2 class="cms-modal-title" id="publishModalTitle"><i class="fa-solid fa-rocket" aria-hidden="true"></i> Publish ke GitHub Pages</h2>
+        <button class="cms-modal-close" id="publishModalClose" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="cms-modal-body">
+        <p class="cms-modal-desc">Karena GitHub Pages adalah hosting statis, perubahan harus disimpan ke file <code>data/portfolio.json</code> di repositori agar terlihat oleh semua pengunjung.</p>
+        <ol class="cms-publish-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span>Klik tombol di bawah untuk mengunduh file <code>portfolio.json</code> terbaru.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Ganti file <code>data/portfolio.json</code> di folder proyek Anda dengan file yang baru diunduh.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>Jalankan perintah berikut di terminal:</span>
+          </li>
+        </ol>
+        <div class="cms-code-block">
+          <code>git add data/portfolio.json<br>git commit -m "update: portfolio data"<br>git push</code>
+          <button class="cms-copy-btn" id="btnCopyGitCmd" title="Salin perintah"><i class="fa-regular fa-copy"></i></button>
+        </div>
+        <p class="cms-modal-note">Setelah push, GitHub Pages akan memperbarui situs dalam 1&ndash;2 menit.</p>
+      </div>
+      <div class="cms-modal-footer">
+        <button type="button" class="btn-cms-save" id="btnDownloadForPublish">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          Unduh portfolio.json
+        </button>
+        <button type="button" class="topbar-action-btn" id="publishModalCancel">Tutup</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
