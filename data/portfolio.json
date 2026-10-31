@@ -1,0 +1,390 @@
+{
+  "home": {
+    "title": "Home",
+    "badge": "Terbuka untuk Peluang Kerja & Freelance",
+    "name": "Rijal Imamul Haq Syamsu Alam",
+    "nickname": "Rijal",
+    "typewriterRoles": [
+      "Web Developer",
+      "Frontend Specialist",
+      "UI/UX Enthusiast"
+    ],
+    "bio": "Membangun antarmuka web modern, responsif, dan interaktif dengan perhatian tinggi pada performa dan pengalaman pengguna.",
+    "avatar": "./assets/Profil/Img-Profil.jpeg",
+    "ctaButtons": [
+      {
+        "id": "home-cta-projects",
+        "label": "Lihat Proyek",
+        "url": "#projects",
+        "variant": "primary",
+        "icon": "fa-solid fa-arrow-down"
+      },
+      {
+        "id": "home-cta-contact",
+        "label": "Hubungi Saya",
+        "url": "#contact",
+        "variant": "outline",
+        "icon": "fa-regular fa-paper-plane"
+      }
+    ],
+    "stats": [
+      {
+        "id": "home-stat-projects",
+        "value": 5,
+        "suffix": "+",
+        "label": "Proyek Selesai",
+        "icon": "fa-solid fa-laptop-code"
+      },
+      {
+        "id": "home-stat-experience",
+        "value": 2,
+        "suffix": "+ Tahun",
+        "label": "Pengalaman Coding",
+        "icon": "fa-solid fa-code-commit"
+      },
+      {
+        "id": "home-stat-satisfaction",
+        "value": 100,
+        "suffix": "%",
+        "label": "Komitmen Kualitas",
+        "icon": "fa-solid fa-award"
+      }
+    ]
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Mengenal Lebih Dekat",
+    "avatar": "./assets/Profil/Img-Profil.jpeg",
+    "paragraphs": [
+      {
+        "id": "about-para-1",
+        "text": "Halo! Saya Rijal Imamul Haq Syamsu Alam, seorang Web Developer yang berfokus pada pengembangan antarmuka web modern yang bersih, interaktif, dan mudah digunakan."
+      },
+      {
+        "id": "about-para-2",
+        "text": "Saya memiliki ketertarikan mendalam pada interaksi visual menggunakan GSAP, arsitektur CSS modern, serta penyusunan kode JavaScript vanilla yang rapi, cepat, dan terstruktur."
+      },
+      {
+        "id": "about-para-3",
+        "text": "Bagi saya, web development bukan hanya sekadar membuat aplikasi berfungsi, melainkan menghadirkan pengalaman visual yang nyaman dan responsif bagi setiap pengunjung."
+      }
+    ],
+    "personalInfo": [
+      {
+        "id": "about-info-role",
+        "label": "Peran",
+        "value": "Frontend / Web Developer",
+        "icon": "fa-solid fa-briefcase"
+      },
+      {
+        "id": "about-info-location",
+        "label": "Lokasi",
+        "value": "Indonesia",
+        "icon": "fa-solid fa-location-dot"
+      },
+      {
+        "id": "about-info-status",
+        "label": "Status",
+        "value": "Tersedia untuk Proyek",
+        "icon": "fa-solid fa-circle-check"
+      },
+      {
+        "id": "about-info-language",
+        "label": "Bahasa",
+        "value": "Bahasa Indonesia & English",
+        "icon": "fa-solid fa-globe"
+      }
+    ],
+    "resumeUrl": "#",
+    "resumeButtonLabel": "Download CV"
+  },
+  "tools": {
+    "title": "Tools & Technologies",
+    "subtitle": "Keahlian & Perangkat yang Sering Digunakan",
+    "categories": [
+      "Semua",
+      "Frontend",
+      "Styling & Design",
+      "Tools & Versioning"
+    ],
+    "items": [
+      {
+        "id": "tool-html5",
+        "name": "HTML5",
+        "category": "Frontend",
+        "iconType": "devicon",
+        "iconClass": "devicon-html5-plain colored",
+        "description": "Penyusunan struktur dokumen web yang semantik dan ramah aksesibilitas.",
+        "proficiency": "Advanced",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-css3",
+        "name": "CSS3",
+        "category": "Styling & Design",
+        "iconType": "devicon",
+        "iconClass": "devicon-css3-plain colored",
+        "description": "Tata letak modern dengan Flexbox, Grid, CSS Variables, dan animasi transisi.",
+        "proficiency": "Advanced",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-javascript",
+        "name": "JavaScript (ES6+)",
+        "category": "Frontend",
+        "iconType": "devicon",
+        "iconClass": "devicon-javascript-plain colored",
+        "description": "Logika interaktif, manipulasi DOM dinamis, asynchronous fetch, dan modularitas kode.",
+        "proficiency": "Advanced",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-gsap",
+        "name": "GSAP",
+        "category": "Styling & Design",
+        "iconType": "devicon",
+        "iconClass": "devicon-greensock-plain colored",
+        "description": "Animasi timeline performa tinggi dan efek transisi interaktif dengan ScrollTrigger.",
+        "proficiency": "Intermediate",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-git",
+        "name": "Git",
+        "category": "Tools & Versioning",
+        "iconType": "devicon",
+        "iconClass": "devicon-git-plain colored",
+        "description": "Pelacakan riwayat versi kode dan pengelolaan branch pengembangan proyek.",
+        "proficiency": "Intermediate",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-github",
+        "name": "GitHub",
+        "category": "Tools & Versioning",
+        "iconType": "devicon",
+        "iconClass": "devicon-github-original",
+        "description": "Penyimpanan repositori daring, kolaborasi kode, dan deployment ke GitHub Pages.",
+        "proficiency": "Intermediate",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-vscode",
+        "name": "VS Code",
+        "category": "Tools & Versioning",
+        "iconType": "devicon",
+        "iconClass": "devicon-vscode-plain colored",
+        "description": "Pusat lingkungan kerja penulisan kode dengan konfigurasi ekstensi produktivitas.",
+        "proficiency": "Advanced",
+        "isFeatured": false
+      },
+      {
+        "id": "tool-figma",
+        "name": "Figma",
+        "category": "Styling & Design",
+        "iconType": "devicon",
+        "iconClass": "devicon-figma-plain colored",
+        "description": "Perancangan wireframe, eksplorasi mockup UI, dan acuan slicing desain ke kode.",
+        "proficiency": "Intermediate",
+        "isFeatured": false
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Karya Pilihan yang Pernah Saya Kembangkan",
+    "items": [
+      {
+        "id": "proj-klink",
+        "title": "K-Link Web Application",
+        "slug": "k-link-app",
+        "category": "Web Application",
+        "summary": "Platform web untuk menghubungkan layanan komunitas dan komunikasi terintegrasi.",
+        "description": "Aplikasi berbasis web dengan fokus pada antarmuka pengguna yang bersih, responsif, dan alur navigasi yang intuitif.",
+        "image": "./assets/Project/Project K-link.png",
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "JavaScript"
+        ],
+        "demoUrl": "https://example.com/k-link",
+        "repoUrl": "https://github.com/Jallrijal/k-link",
+        "featured": true,
+        "order": 1
+      },
+      {
+        "id": "proj-burgold",
+        "title": "Burgold Food & Beverage",
+        "slug": "burgold-fnb",
+        "category": "Landing Page",
+        "summary": "Landing page interaktif untuk brand makanan cepat saji dengan visual dinamis.",
+        "description": "Menampilkan katalog produk burger premium dengan animasi interaktif GSAP dan tampilan optimal di layar ponsel.",
+        "image": "./assets/Project/Project-Burgold.png",
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "GSAP"
+        ],
+        "demoUrl": "https://example.com/burgold",
+        "repoUrl": "https://github.com/Jallrijal/burgold",
+        "featured": true,
+        "order": 2
+      },
+      {
+        "id": "proj-jersell",
+        "title": "Jersell Sport Jersey Store",
+        "slug": "jersell-store",
+        "category": "E-Commerce Web",
+        "summary": "Toko online katalog jersey olahraga dengan fitur filter kategori dan keranjang belanja.",
+        "description": "Dirancang untuk memudahkan pencarian dan pemilihan varian jersey dengan tata letak kartu produk modern.",
+        "image": "./assets/Project/Project-Jersell.png",
+        "tags": [
+          "JavaScript",
+          "CSS3",
+          "Responsive Design"
+        ],
+        "demoUrl": "https://example.com/jersell",
+        "repoUrl": "https://github.com/Jallrijal/jersell",
+        "featured": true,
+        "order": 3
+      },
+      {
+        "id": "proj-kanbanflow",
+        "title": "KanbanFlow Task Manager",
+        "slug": "kanbanflow-task",
+        "category": "Productivity Tool",
+        "summary": "Aplikasi manajemen tugas Kanban bergaya drag-and-drop dengan penyimpanan lokal browser.",
+        "description": "Membantu mengatur tahapan pengerjaan tugas dari tahap To-Do, In Progress, hingga Done secara visual dan tersimpan di localStorage.",
+        "image": "./assets/Project/Project-Kanbanflow.png",
+        "tags": [
+          "JavaScript",
+          "Drag & Drop API",
+          "LocalStorage"
+        ],
+        "demoUrl": "https://example.com/kanbanflow",
+        "repoUrl": "https://github.com/Jallrijal/kanbanflow",
+        "featured": false,
+        "order": 4
+      },
+      {
+        "id": "proj-sipadeceng",
+        "title": "Sipadeceng Information System",
+        "slug": "sipadeceng-system",
+        "category": "Information System",
+        "summary": "Sistem informasi pelayanan administrasi publik yang terstruktur dan mudah diakses.",
+        "description": "Mengakomodasi kebutuhan pengelolaan data pelayanan warga dengan dasbor navigasi yang ramah pengguna.",
+        "image": "./assets/Project/Project-Sipadeceng.png",
+        "tags": [
+          "Web System",
+          "Dashboard UI",
+          "JavaScript"
+        ],
+        "demoUrl": "https://example.com/sipadeceng",
+        "repoUrl": "https://github.com/Jallrijal/sipadeceng",
+        "featured": false,
+        "order": 5
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Jejak Langkah & Perjalanan Karier",
+    "items": [
+      {
+        "id": "exp-frontend-freelance",
+        "role": "Freelance Web Developer",
+        "company": "Mandiri / Self-Employed",
+        "location": "Remote, Indonesia",
+        "period": "2023 - Sekarang",
+        "type": "Freelance",
+        "description": "Merancang dan membangun situs web kustom untuk klien personal maupun usaha kecil, mengutamakan kecepatan akses, tata letak responsif, dan interaktivitas yang rapi.",
+        "achievements": [
+          {
+            "id": "ach-1",
+            "text": "Menyelesaikan lebih dari 10 proyek website tepat waktu dengan tingkat kepuasan klien yang tinggi."
+          },
+          {
+            "id": "ach-2",
+            "text": "Menerapkan animasi berbasis GSAP untuk menghidupkan antarmuka tanpa mengorbankan performa muat halaman."
+          }
+        ],
+        "order": 1
+      },
+      {
+        "id": "exp-intern-developer",
+        "role": "Frontend Web Intern",
+        "company": "Tech Studio / Mitra Digital",
+        "location": "Indonesia",
+        "period": "2023 - 2024",
+        "type": "Magang",
+        "description": "Membantu tim pengembang dalam slicing desain Figma ke kode HTML dan CSS semantik, memperbaiki tata letak antarmuka lintas peramban, serta merapikan interaksi skrip.",
+        "achievements": [
+          {
+            "id": "ach-3",
+            "text": "Mengonversi rancangan mockup Figma menjadi halaman web responsif dengan akurasi visual yang presisi."
+          },
+          {
+            "id": "ach-4",
+            "text": "Mengoptimalkan aset gambar dan penataan stylesheet guna mempercepat proses rendering awal browser."
+          }
+        ],
+        "order": 2
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Mari Terhubung & Berkolaborasi",
+    "description": "Tertarik untuk berkolaborasi dalam proyek web atau ingin berdiskusi seputar frontend development? Silakan hubungi saya melalui tautan di bawah ini.",
+    "email": "rijalimamulhaq28@gmail.com",
+    "location": "Indonesia",
+    "availability": "Terbuka untuk proyek baru & peluang karier",
+    "items": [
+      {
+        "id": "contact-email",
+        "platform": "Email",
+        "label": "rijalimamulhaq28@gmail.com",
+        "url": "mailto:rijalimamulhaq28@gmail.com",
+        "iconClass": "fa-solid fa-envelope",
+        "color": "#ea4335",
+        "isPrimary": true
+      },
+      {
+        "id": "contact-linkedin",
+        "platform": "LinkedIn",
+        "label": "linkedin.com/in/rijall",
+        "url": "https://linkedin.com/in/rijall",
+        "iconClass": "fa-brands fa-linkedin-in",
+        "color": "#0a66c2",
+        "isPrimary": true
+      },
+      {
+        "id": "contact-github",
+        "platform": "GitHub",
+        "label": "github.com/Jallrijal",
+        "url": "https://github.com/Jallrijal",
+        "iconClass": "fa-brands fa-github",
+        "color": "#ffffff",
+        "isPrimary": true
+      },
+      {
+        "id": "contact-whatsapp",
+        "platform": "WhatsApp",
+        "label": "+62 812-xxxx-xxxx",
+        "url": "https://wa.me/6281200000000",
+        "iconClass": "fa-brands fa-whatsapp",
+        "color": "#25d366",
+        "isPrimary": false
+      },
+      {
+        "id": "contact-instagram",
+        "platform": "Instagram",
+        "label": "@rii.jall_",
+        "url": "https://instagram.com/rii.jall_",
+        "iconClass": "fa-brands fa-instagram",
+        "color": "#e1306c",
+        "isPrimary": false
+      }
+    ]
+  }
+}
