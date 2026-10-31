@@ -502,7 +502,7 @@ export function renderContact(data) {
       </header>
 
       <div class="contact-card-main">
-        <p class="contact-giant" aria-hidden="true">Mari bikin<br>sesuatu<em>.</em></p>
+        <p class="contact-giant" aria-hidden="true">Mari buat<br>sesuatu<em>.</em></p>
         ${intro}
         <div class="contact-links-grid" id="contact-links-grid">
           ${contactCardsHtml}
@@ -639,7 +639,7 @@ if (typeof window !== 'undefined' && typeof window.addEventListener === 'functio
 // langsung memicu re-render DOM secara otomatis!
 if (typeof window !== 'undefined' && window.localStorage && typeof window.addEventListener === 'function') {
   const originalSetItem = window.localStorage.setItem.bind(window.localStorage);
-  window.localStorage.setItem = function(key, value) {
+  window.localStorage.setItem = function (key, value) {
     originalSetItem(key, value);
     if (typeof key === 'string' && (key.startsWith('portfolio_') || SECTIONS.includes(key))) {
       window.dispatchEvent(new CustomEvent('portfolio:storage-update', { detail: { key, value } }));
@@ -647,7 +647,7 @@ if (typeof window !== 'undefined' && window.localStorage && typeof window.addEve
   };
 
   const originalRemoveItem = window.localStorage.removeItem.bind(window.localStorage);
-  window.localStorage.removeItem = function(key) {
+  window.localStorage.removeItem = function (key) {
     originalRemoveItem(key);
     if (typeof key === 'string' && (key.startsWith('portfolio_') || SECTIONS.includes(key))) {
       window.dispatchEvent(new CustomEvent('portfolio:storage-update', { detail: { key } }));
@@ -655,7 +655,7 @@ if (typeof window !== 'undefined' && window.localStorage && typeof window.addEve
   };
 
   const originalClear = window.localStorage.clear.bind(window.localStorage);
-  window.localStorage.clear = function() {
+  window.localStorage.clear = function () {
     originalClear();
     window.dispatchEvent(new CustomEvent('portfolio:storage-update', { detail: { cleared: true } }));
   };
