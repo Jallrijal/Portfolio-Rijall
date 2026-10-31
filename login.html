@@ -148,12 +148,19 @@
     const passwordInput = document.getElementById('password');
     const errorBox = document.getElementById('error-message');
 
-    loginForm.addEventListener('submit', (e) => {
+    const PASSWORD_HASH = '6cfbb60e566772d874b64f58de501d19f708f6ecaccc880cec4a83d6640e0cd9';
+
+    async function hashPassword(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const enteredPassword = passwordInput.value.trim();
+      const enteredHash = await hashPassword(enteredPassword);
 
-      // Logika if else sesuai spesifikasi PRD (password default: 'password')
-      if (enteredPassword === 'password') {
+      if (enteredHash === PASSWORD_HASH) {
         sessionStorage.setItem('portfolio_cms_auth', 'true');
         window.location.href = './cms.html';
       } else {
