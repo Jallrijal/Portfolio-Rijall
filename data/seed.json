@@ -5,11 +5,11 @@
     "name": "Rijal Imamul Haq Syamsu Alam",
     "nickname": "Rijal",
     "typewriterRoles": [
-      "Web Developer",
+      "Fullstack Web Developer",
       "Frontend Specialist",
-      "UI/UX Enthusiast"
+      "Software Quality Assurance"
     ],
-    "bio": "Membangun antarmuka web modern, responsif, dan interaktif dengan perhatian tinggi pada performa dan pengalaman pengguna.",
+    "bio": "Membangun aplikasi web modern secara menyeluruh — dari antarmuka pengguna yang responsif dan interaktif, logika backend yang terstruktur, hingga pengujian kualitas perangkat lunak untuk memastikan setiap fitur berjalan sesuai standar.",
     "avatar": "./assets/Profil/Img-Profil.jpeg",
     "ctaButtons": [
       {
@@ -58,22 +58,22 @@
     "paragraphs": [
       {
         "id": "about-para-1",
-        "text": "Halo! Saya Rijal Imamul Haq Syamsu Alam, seorang Web Developer yang berfokus pada pengembangan antarmuka web modern yang bersih, interaktif, dan mudah digunakan."
+        "text": "Halo! Saya Rijal Imamul Haq Syamsu Alam, seorang Fullstack Web Developer yang memiliki kompetensi di bidang pengembangan antarmuka pengguna, logika backend, serta pengujian kualitas perangkat lunak berbasis standar ISO 25010."
       },
       {
         "id": "about-para-2",
-        "text": "Saya memiliki ketertarikan mendalam pada interaksi visual menggunakan GSAP, arsitektur CSS modern, serta penyusunan kode JavaScript vanilla yang rapi, cepat, dan terstruktur."
+        "text": "Saya berpengalaman membangun aplikasi web dari sisi frontend menggunakan HTML, CSS, dan JavaScript, maupun dari sisi backend menggunakan PHP. Saya juga menerapkan pendekatan Software Quality Assurance untuk memastikan setiap sistem yang dibangun memenuhi standar kegunaan, keandalan, dan performa."
       },
       {
         "id": "about-para-3",
-        "text": "Bagi saya, web development bukan hanya sekadar membuat aplikasi berfungsi, melainkan menghadirkan pengalaman visual yang nyaman dan responsif bagi setiap pengunjung."
+        "text": "Bagi saya, pengembangan perangkat lunak yang baik bukan hanya tentang membuat fitur berfungsi, melainkan memastikan keseluruhan sistem — dari tampilan hingga logika — berjalan dengan andal, efisien, dan memberikan pengalaman terbaik bagi penggunanya."
       }
     ],
     "personalInfo": [
       {
         "id": "about-info-role",
         "label": "Peran",
-        "value": "Frontend / Web Developer",
+        "value": "Fullstack Web Developer & SQA",
         "icon": "fa-solid fa-briefcase"
       },
       {
@@ -105,7 +105,9 @@
       "Semua",
       "Frontend",
       "Styling & Design",
-      "Tools & Versioning"
+      "Backend",
+      "Tools & Versioning",
+      "Quality Assurance"
     ],
     "items": [
       {
@@ -187,6 +189,46 @@
         "iconType": "devicon",
         "description": "Perancangan wireframe, eksplorasi mockup UI, dan acuan slicing desain ke kode.",
         "isFeatured": false
+      },
+      {
+        "id": "tool-php",
+        "name": "PHP",
+        "category": "Backend",
+        "proficiency": "Intermediate",
+        "iconClass": "devicon-php-plain colored",
+        "iconType": "devicon",
+        "description": "Pengembangan logika server-side dan pemrosesan data untuk aplikasi web berbasis PHP.",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-mysql",
+        "name": "MySQL",
+        "category": "Backend",
+        "proficiency": "Intermediate",
+        "iconClass": "devicon-mysql-plain colored",
+        "iconType": "devicon",
+        "description": "Perancangan dan pengelolaan basis data relasional untuk kebutuhan penyimpanan data aplikasi.",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-nodejs",
+        "name": "Node.js",
+        "category": "Backend",
+        "proficiency": "Intermediate",
+        "iconClass": "devicon-nodejs-plain colored",
+        "iconType": "devicon",
+        "description": "Pengembangan server-side JavaScript untuk membangun API dan aplikasi web berbasis runtime Node.js.",
+        "isFeatured": true
+      },
+      {
+        "id": "tool-iso25010",
+        "name": "ISO 25010",
+        "category": "Quality Assurance",
+        "proficiency": "Intermediate",
+        "iconClass": "fa-solid fa-shield-halved",
+        "iconType": "fa",
+        "description": "Pengujian kualitas perangkat lunak berdasarkan standar ISO 25010 mencakup aspek kegunaan, keandalan, dan efisiensi performa.",
+        "isFeatured": true
       }
     ]
   },
@@ -297,7 +339,7 @@
         "location": "Makassar, Indonesia",
         "period": "Mei - Agustus 2025",
         "type": "Magang",
-        "description": "Merancang dan membangun sistem pengajuan cuti berbasis web untuk pegawai Pengadilan Tinggi Agama Makassar, mengutamakan kecepatan akses, tata letak responsif, dan interaktivitas yang rapi.",
+        "description": "Merancang, membangun, dan menguji sistem pengajuan cuti berbasis web menggunakan standar ISO 25010 untuk pegawai Pengadilan Tinggi Agama Makassar, dengan mengutamakan kecepatan akses, tata letak responsif, dan antarmuka yang intuitif.",
         "achievements": [
           {
             "id": "ach-1-1",
